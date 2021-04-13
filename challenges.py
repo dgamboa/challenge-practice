@@ -612,3 +612,44 @@ def csAverageOfTopFive(scores):
         output.append([id, avg])
     
     return output
+
+
+# ********PROBLEM 3***************************************************************************** #
+# Given a string text, you need to use the characters of text to form as many instances of the word "lambda" as possible.
+
+# You can use each character in text at most once.
+
+# Write a function that returns the maximum number of instances of "lambda" that can be formed.
+
+# Example 1:
+
+# Input: text = "mbxcdatlas"
+# Output: 1
+# Example 2:
+
+# Input: text = "lalaaxcmbdtsumbdav"
+# Output: 2
+# Example 3:
+
+# Input: text = "sctlamb"
+# Output: 0
+# Notes:
+
+# text consists of lowercase English characters only
+
+# Initial Submission
+def csMaxNumberOfLambdas(text):
+    store = {}
+    
+    for c in text:
+        if c not in store: store[c] = 0
+        store[c] += 1
+        
+    max_lambda = []
+    lambda_name = [("l", 1), ("a", 2), ("m", 1), ("b", 1), ("d", 1)]
+    
+    for k, v in lambda_name:
+        if k not in store: return 0
+        max_lambda.append(store[k]//v)
+    
+    return min(max_lambda)
