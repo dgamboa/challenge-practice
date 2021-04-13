@@ -546,3 +546,33 @@ def csRaindrops(number):
         output+= "Plong"
     
     return output if len(output) > 0 else str(number)
+
+
+# ********Sprint 2.2 Challenge***************************************************************************** #
+# ********PROBLEM 1***************************************************************************** #
+# You are given a non-empty array of integers.
+
+# One element appears exactly once, with every other element appearing at least twice, perhaps more.
+
+# Write a function that can find and return the element that appears exactly once.
+
+# Example 1:
+
+# Input: [1,1,2,1]
+# Output: 2
+# Example 2:
+
+# Input: [1,2,1,2,1,2,80]
+# Output: 80
+# Note: You should be able to develop a solution that has O(n) time complexity.
+
+# Initial Submission
+def csFindTheSingleNumber(nums):
+    store = {}
+    
+    for n in nums:
+        if n not in store: store[n] = 0
+        store[n] += 1
+    
+    sorted_store = sorted(store.items(), key=lambda e: e[1])
+    return sorted_store[0][0]
