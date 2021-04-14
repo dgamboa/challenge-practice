@@ -713,3 +713,60 @@ def csIsomorphicStrings(a, b):
         if c != store[a[i]]: return False
     
     return True
+
+# ********PROBLEM 2***************************************************************************** #
+# Given a pattern and a string a, find if a follows the same pattern.
+
+# Here, to "follow" means a full match, such that there is a one-to-one correspondence between a letter in pattern and a non-empty word in a.
+
+# Example 1:
+
+# Input:
+# pattern = "abba"
+# a = "lambda school school lambda"
+
+# Output: true
+# Example 2:
+
+# Input:
+# pattern = "abba"
+# a = "lambda school school coding"
+
+# Output:
+# false
+# Example 3:
+
+# Input:
+# pattern = "aaaa"
+# a = "lambda school school lambda"
+
+# Output: false
+# Example 4:
+
+# Input:
+# pattern = "abba"
+# a = "lambda lambda lambda lambda"
+
+# Output: false
+# Notes:
+
+# pattern contains only lower-case English letters.
+# a contains only lower-case English letters and spaces ' '.
+# a does not contain any leading or trailing spaces.
+# All the words in a are separated by a single space.
+
+# Initial Submission
+# Score: 243/300
+def csWordPattern(pattern, a):
+    all_words = a.split()
+    unique_words = list(set(all_words))
+    
+    store = {c: unique_words[i] for i,c in enumerate(pattern) if i < len(unique_words)}
+    
+    print(store)
+    
+    for i,c in enumerate(pattern):
+        if c not in store: return False
+        if store[c] != all_words[i]: return False
+    
+    return True
