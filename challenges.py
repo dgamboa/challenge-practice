@@ -653,3 +653,63 @@ def csMaxNumberOfLambdas(text):
         max_lambda.append(store[k]//v)
     
     return min(max_lambda)
+
+
+# ********Sprint 2.3 Challenge***************************************************************************** #
+# ********PROBLEM 1***************************************************************************** #
+# Given two strings a and b, determine if they are isomorphic.
+
+# Two strings are isomorphic if the characters in a can be replaced to get b.
+
+# All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character but a character may map to itself.
+
+# Example 1:
+
+# Input: 
+# a = "odd"
+# b = "egg"
+
+# Output:
+# true
+# Example 2:
+
+# Input:
+# a = "foo"
+# b = "bar"
+
+# Output:
+# false
+# Example 3:
+
+# Input:
+# a = "abca"
+# b = "zbxz"
+
+# Output:
+# true
+# Example 4:
+
+# Input:
+# a = "abc"
+# b = ""
+
+# Output:
+# false
+
+# Initial Submission
+def csIsomorphicStrings(a, b):
+    if b == "" and a != "": return False
+    if b != "" and a == "": return False
+    
+    store = {}
+    
+    for i, c in enumerate(a):
+        print(i)
+        print(c)
+        if c not in store and len(b) > 0: store[c] = b[min(i, len(b) - 1)]
+    print(store)
+    
+    for i, c in enumerate(b):
+        if c != store[a[i]]: return False
+    
+    return True
