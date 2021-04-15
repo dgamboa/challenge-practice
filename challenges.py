@@ -770,3 +770,51 @@ def csWordPattern(pattern, a):
         if store[c] != all_words[i]: return False
     
     return True
+
+
+# ********PROBLEM 3***************************************************************************** #
+# Given an array of strings strs, write a function that can group the anagrams. The groups should be ordered such that the larger groups come first, with subsequent groups ordered in descending order.
+
+# An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+# Example 1:
+
+# Input:
+# strs = ["apt","pat","ear","tap","are","arm"]
+
+# Output:
+# [["apt","pat","tap"],["ear","are"],["arm"]]
+# Example 2:
+
+# Input:
+# strs = [""]
+
+# Output:
+# [[""]]
+# Example 3:
+
+# Input:
+# strs = ["a"]
+
+# Output:
+# [["a"]]
+# Notes:
+
+# strs[i] consists of lower-case English letters.
+
+# Initial Submission
+def csGroupAnagrams(strs):
+    store = {}
+    
+    for s in strs:
+        hash_value = 0        
+        for c in s:
+            hash_value += ord(c)
+        
+        if hash_value not in store:
+            store[hash_value] = [s]
+        else:
+            store[hash_value].append(s)
+    
+    return sorted(list(store.values()), key=lambda x: len(x), reverse=True)
+        
