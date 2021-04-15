@@ -771,6 +771,23 @@ def csWordPattern(pattern, a):
     
     return True
 
+# Second Submission
+# Score: 300/300
+def csWordPattern(pattern, a):
+    all_words = a.split()
+    if len(pattern) != len(all_words): return False
+    
+    store = {}
+    for i in range(min(len(all_words), len(pattern))):
+        if all_words[i] not in store.values():
+            store[pattern[i]] = all_words[i]
+    
+    for i,c in enumerate(pattern):
+        if c not in store: return False
+        if store[c] != all_words[i]: return False
+    
+    return True
+
 
 # ********PROBLEM 3***************************************************************************** #
 # Given an array of strings strs, write a function that can group the anagrams. The groups should be ordered such that the larger groups come first, with subsequent groups ordered in descending order.
