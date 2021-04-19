@@ -86,3 +86,19 @@ def firstNotRepeatingCharacter(s):
 # Output [**,**] for n=2, [***,* *,***] for n=3, [*****,*   *,*   *,*   *,*****] for n=5
 def someListFunction(n):
   return ["*"*n] + ["*" + " "*(n-2) + "*"]*(n-2) + ["*"*n]
+
+
+# ************************************************************************************************
+# From Lindsay:
+# Find all the pairs of two integers in an unsorted array that sum up to a given S. For example, if the array is [3, 5, 2, -4, 8, 11] and the sum is 7, your program should return [[11, -4], [2, 5]] because 11 + -4 = 7 and 2 + 5 = 7.
+def findPairs(arr, S):
+  result = []
+
+  for n1 in arr:
+    for n2 in arr:
+      if n1 + n2 == S:
+        result.append([n1, n2])
+  
+  return result
+# >>> [[5, 2], [2, 5], [-4, 11], [11, -4]]
+# Need to make sure there are no duplicates
