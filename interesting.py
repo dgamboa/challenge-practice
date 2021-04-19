@@ -79,3 +79,10 @@ def firstNotRepeatingCharacter(s):
         if s.index(c) == s.rindex(c):
             return c
     return '_'
+
+
+# ************************************************************************************************
+# From Trey:
+# Output [**,**] for n=2, [***,* *,***] for n=3, [*****,*   *,*   *,*   *,*****] for n=5
+def someListFunction(n):
+  return ["*"*n] + ["*" + " "*(n-2) + "*"]*(n-2) + ["*"*n]
