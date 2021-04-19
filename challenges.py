@@ -902,3 +902,58 @@ def insertValueIntoSortedLinkedList(l, value):
     list_copy.next = new_node
     
     return l
+
+# ********PROBLEM 2***************************************************************************** #
+# Note: Your solution should have O(l1.length + l2.length) time complexity, since this is what you will be asked to accomplish in an interview.
+
+# Given two singly linked lists sorted in non-decreasing order, your task is to merge them. In other words, return a singly linked list, also sorted in non-decreasing order, that contains the elements from both original lists.
+
+# Example
+
+# For l1 = [1, 2, 3] and l2 = [4, 5, 6], the output should be
+# mergeTwoLinkedLists(l1, l2) = [1, 2, 3, 4, 5, 6];
+# For l1 = [1, 1, 2, 4] and l2 = [0, 3, 5], the output should be
+# mergeTwoLinkedLists(l1, l2) = [0, 1, 1, 2, 3, 4, 5].
+
+# Initial Submission:
+# Singly-linked lists are already defined with this interface:
+# class ListNode(object):
+#   def __init__(self, x):
+#     self.value = x
+#     self.next = None
+#
+def mergeTwoLinkedLists(l1, l2):
+    if l1 is None:
+        return l2
+    elif l2 is None:
+        return l1
+
+    if l1.value < l2.value:
+        l = ListNode(l1.value)
+        cur1 = l1.next
+        cur2 = l2
+    else:
+        l = ListNode(l2.value)
+        cur1 = l1
+        cur2 = l2.next
+    
+    merge = l
+    while cur1 is not None or cur2 is not None:
+        if cur1 is not None and cur2 is None:
+            merge.next = cur1
+            merge = merge.next
+            cur1 = cur1.next  
+        elif cur1 is None and cur2 is not None:
+            merge.next = cur2
+            merge = merge.next
+            cur2 = cur2.next
+        elif cur1.value < cur2.value:
+            merge.next = cur1
+            merge = merge.next
+            cur1 = cur1.next
+        else:
+            merge.next = cur2
+            merge = merge.next
+            cur2 = cur2.next
+
+    return l
