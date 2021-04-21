@@ -1104,3 +1104,36 @@ def balancedBinaryTree(root):
     else:
         return balancedBinaryTree(root.left) and balancedBinaryTree(root.right)
     
+
+# ********PROBLEM 2*********************************************************** #
+# You are given a binary tree and you are asked to write a function that finds its minimum depth. The minimum depth can be defined as the number of nodes along the shortest path from the root down to the nearest leaf node. As a reminder, a leaf node is a node with no children.
+
+# Example:
+# Given the binary tree [5,7,22,None,None,17,9],
+
+#     5
+#    / \
+#   7  22
+#     /  \
+#    17   9
+# your function should return its minimum depth = 2.
+
+# Initial Submission:
+#
+# Binary trees are already defined with this interface:
+# class Tree(object):
+#   def __init__(self, x):
+#     self.value = x
+#     self.left = None
+#     self.right = None
+def minimumDepthBinaryTree(root):
+    if root is None:
+        return 0
+    elif root.left is None and root.right is None:
+        return 1
+    elif root.left is None:
+        return 1 + minimumDepthBinaryTree(root.right)
+    elif root.right is None:
+        return 1 + minimumDepthBinaryTree(root.left)
+    else:
+        return 1 + min(minimumDepthBinaryTree(root.right), minimumDepthBinaryTree(root.left))
