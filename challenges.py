@@ -1014,7 +1014,7 @@ def queueOnStacks(requests):
 
 
 
-# ********PROBLEM 1*********************************************************** #
+# ********PROBLEM 2*********************************************************** #
 # Given a string sequence consisting of the characters '(', ')', '[', ']', '{', and '}'. Your task is to determine whether or not the sequence is a valid bracket sequence.
 
 # The Valid bracket sequence is defined in the following way:
@@ -1042,3 +1042,65 @@ def validBracketSequence(sequence):
             stack.append(b)
     
     return True if len(stack) == 0 else False
+
+
+# ********Sprint 3.3 Challenge************************************************ #
+# ********PROBLEM 1*********************************************************** #
+# You are given a binary tree and you need to write a function that can determine if it is height-balanced.
+
+# A height-balanced tree can be defined as a binary tree in which the left and right subtrees of every node differ in height by a maximum of 1.
+
+# Example 1:
+# Given the following tree [5,10,25,None,None,12,3]:
+
+#     5
+#    / \
+#  10  25
+#     /  \
+#    12   3
+# return True.
+
+# Example 2:
+# Given the following tree [5,6,6,7,7,None,None,8,8]:
+
+#        5
+#       / \
+#      6   6
+#     / \
+#    7   7
+#   / \
+#  8   8
+# return False.
+
+# Initial Submission:
+#
+# Binary trees are already defined with this interface:
+# class Tree(object):
+#   def __init__(self, x):
+#     self.value = x
+#     self.left = None
+#     self.right = None
+def levelCounter(node):
+    if node is None:
+        return 0
+    elif node.left is None and node.right is None:
+        return 1
+    elif node.left is None:
+        return 1 + levelCounter(node.right)
+    elif node.right is None:
+        return 1 + levelCounter(node.left)
+    else:
+        return 1 + max(levelCounter(node.left), levelCounter(node.right))
+
+def balancedBinaryTree(root):
+    if root is None: return True
+    
+    leftLevels = levelCounter(root.left)
+    rightLevels = levelCounter(root.right)
+    
+    
+    if abs(leftLevels - rightLevels) > 1:
+        return False
+    else:
+        return balancedBinaryTree(root.left) and balancedBinaryTree(root.right)
+    
