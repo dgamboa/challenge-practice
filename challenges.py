@@ -1137,3 +1137,38 @@ def minimumDepthBinaryTree(root):
         return 1 + minimumDepthBinaryTree(root.left)
     else:
         return 1 + min(minimumDepthBinaryTree(root.right), minimumDepthBinaryTree(root.left))
+
+
+# ********Sprint 3.4 Challenge************************************************ #
+# ********PROBLEM 1*********************************************************** #
+# You are given a binary tree. Write a function that returns the binary tree's node values using an in-order traversal.
+
+# Example:
+# Input: [2,None,3,4]
+
+#    2
+#     \
+#      3
+#     /
+#    4
+# Output: [2,4,3]
+
+# Initial Submission:
+#
+# Binary trees are already defined with this interface:
+# class Tree(object):
+#   def __init__(self, x):
+#     self.value = x
+#     self.left = None
+#     self.right = None
+def search(root, res):
+    if root is None:
+        return
+    search(root.left, res)
+    res.append(root.value)
+    search(root.right, res)
+
+def binaryTreeInOrderTraversal(root):
+    result = []
+    search(root, result)
+    return result
