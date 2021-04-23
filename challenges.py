@@ -1404,3 +1404,40 @@ def csBSTRangeSum(root, lower, upper):
     search(root, lower, upper, tracker)
     return sum(tracker)
     
+# ********PROBLEM 3*********************************************************** #
+# Given a binary tree, write a function that inverts the tree.
+
+# Example:
+
+# Input:
+#      6
+#    /   \
+#   4     8
+#  / \   / \
+# 2   5 7   9
+
+# Output:
+#      6
+#    /   \
+#   8     4
+#  / \   / \
+# 9   7 5   2
+
+# Initial Submission:
+#
+# Binary trees are already defined with this interface:
+# class Tree(object):
+#   def __init__(self, x):
+#     self.value = x
+#     self.left = None
+#     self.right = None
+def csBinaryTreeInvert(root):
+    if root is None: return
+    
+    old_left = root.left
+    root.left = root.right
+    root.right = old_left
+    csBinaryTreeInvert(root.left)
+    csBinaryTreeInvert(root.right)
+    
+    return root
