@@ -163,3 +163,98 @@ class BST:
 
     def search(self, value):
         self.root.search(value)
+
+# **************************************************************************** #
+# Depth-First Preorder Traversal
+# **************************************************************************** #
+class TreeNode:
+     def __init__(self, val=0, left=None, right=None):
+         self.val = val
+         self.left = left
+         self.right = right
+
+def helper(root, res):
+    if root is None:
+        return
+    res.append(root.val)
+    helper(root.left, res)
+    helper(root.right, res)
+
+def preorder_traversal(root):
+    result = []
+    helper(root, result)
+    return result
+
+# **************************************************************************** #
+# Depth-First Inorder Traversal
+# **************************************************************************** #
+class TreeNode:
+     def __init__(self, val=0, left=None, right=None):
+         self.val = val
+         self.left = left
+         self.right = right
+
+def helper(root, res):
+    if root is None:
+        return
+    helper(root.left, res)
+    res.append(root.val)
+    helper(root.right, res)
+
+def inorder_traversal(root):
+    result = []
+    helper(root, result)
+    return result
+
+# **************************************************************************** #
+# Depth-First Postorder Traversal
+# **************************************************************************** #
+class TreeNode:
+     def __init__(self, val=0, left=None, right=None):
+         self.val = val
+         self.left = left
+         self.right = right
+
+def helper(root, res):
+    if root is None:
+        return
+    helper(root.left, res)
+    helper(root.right, res)
+    res.append(root.val)
+
+def postorder_traversal(root):
+    result = []
+    helper(root, result)
+    return result
+
+# **************************************************************************** #
+# Breadth-First Traversal
+# **************************************************************************** #
+# Note the use of inefficient queue array with pop(0)
+# Instead use the deque native structure in Python or build a linked list-
+# based queue structure to use
+class TreeNode:
+     def __init__(self, val=0, left=None, right=None):
+         self.val = val
+         self.left = left
+         self.right = right
+
+def breadth_first_traversal(root):
+    if root is None:
+        return []
+
+    result = []
+    queue = []
+    queue.append(root)
+
+    while len(queue) != 0:
+        node = queue.pop(0)
+        result.append(node.val)
+
+        if node.left is not None:
+            queue.append(node.left)
+
+        if node.right is not None:
+            queue.append(node.right)
+
+    return result
