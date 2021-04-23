@@ -1403,6 +1403,33 @@ def csBSTRangeSum(root, lower, upper):
     tracker = []
     search(root, lower, upper, tracker)
     return sum(tracker)
+
+# Second Submission (more efficient because tracker is int):
+#
+# Binary trees are already defined with this interface:
+# class Tree(object):
+#   def __init__(self, x):
+#     self.value = x
+#     self.left = None
+#     self.right = None
+def search(node, lower, upper, tracker):
+    if node is None:
+        return tracker
+    elif node.value < lower:
+        tracker = search(node.right, lower, upper, tracker)
+    elif node.value > upper:
+        tracker = search(node.left, lower, upper, tracker)
+    else:
+        tracker += node.value
+        tracker = search(node.left, lower, upper, tracker)
+        tracker = search(node.right, lower, upper, tracker)
+    
+    return tracker
+
+def csBSTRangeSum(root, lower, upper):
+    tracker = 0
+    return search(root, lower, upper, tracker)
+    
     
 # ********PROBLEM 3*********************************************************** #
 # Given a binary tree, write a function that inverts the tree.
