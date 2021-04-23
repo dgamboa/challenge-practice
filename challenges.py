@@ -1304,3 +1304,38 @@ def treePaths(t):
     tracker = []
     search(t, res, tracker)
     return tracker
+
+# ********Sprint 3.5 Challenge************************************************ #
+# ********PROBLEM 1*********************************************************** #
+# Note: Your solution should have O(l.length) time complexity and O(1) space complexity, since this is what you will be asked to accomplish in an interview.
+
+# Given a singly linked list, reverse and return it.
+
+# Example
+
+# For l = [1, 2, 3, 4, 5], the output should be
+# reverseLinkedList(l) = [5, 4, 3, 2, 1].
+
+# Initial Submission
+# Singly-linked lists are already defined with this interface:
+# class ListNode(object):
+#   def __init__(self, x):
+#     self.value = x
+#     self.next = None
+#
+def reverseLinkedList(l):
+    if l is None or l.next is None:
+        return l
+    
+    cur_node = l
+    next_node = cur_node.next
+    cur_node.next = None
+    
+    while next_node is not None:
+        prev_node = cur_node
+        cur_node = next_node
+        next_node = cur_node.next
+        cur_node.next = prev_node
+    
+    return cur_node
+
