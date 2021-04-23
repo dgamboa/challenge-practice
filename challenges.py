@@ -1339,3 +1339,68 @@ def reverseLinkedList(l):
     
     return cur_node
 
+# ********PROBLEM 2*********************************************************** #
+# You are given the root node of a binary search tree (BST).
+
+# You need to write a function that returns the sum of values of all the nodes with a value between lower and upper (inclusive).
+
+# The BST is guaranteed to have unique values.
+
+# Example 1:
+
+# Input:
+# root = [10, 5, 15, 3, 7, null, 18]
+# lower = 7
+# upper = 15
+
+#          10
+#          / \
+#         5  15
+#        / \    \
+#       3   7    18
+
+# Output:
+# 32
+# Example 2:
+
+# Input:
+# root = [10,5,15,3,7,13,18,1,null,6]
+# lower = 6
+# upper = 10
+
+#            10
+#           /  \
+#        5       15
+#      / \     /   \ 
+#     3   7  13   18
+#    /   /
+#   1   6
+
+# Output:
+# 23
+
+# Initial Submission:
+#
+# Binary trees are already defined with this interface:
+# class Tree(object):
+#   def __init__(self, x):
+#     self.value = x
+#     self.left = None
+#     self.right = None
+def search(node, lower, upper, tracker):
+    if node is None:
+        return
+    elif node.value < lower:
+        search(node.right, lower, upper, tracker)
+    elif node.value > upper:
+        search(node.left, lower, upper, tracker)
+    else:
+        tracker.append(node.value)
+        search(node.left, lower, upper, tracker)
+        search(node.right, lower, upper, tracker)
+
+def csBSTRangeSum(root, lower, upper):
+    tracker = []
+    search(root, lower, upper, tracker)
+    return sum(tracker)
+    
