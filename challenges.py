@@ -1468,3 +1468,27 @@ def csBinaryTreeInvert(root):
     csBinaryTreeInvert(root.right)
     
     return root
+
+# ********Sprint 4.1 Challenge************************************************ #
+# ********PROBLEM 1*********************************************************** #
+# You are given a directed acyclic graph (DAG) that contains N nodes.
+
+# Write a function that can find all the possible paths from node 0 to node N - 1.
+
+# graph[a] is a list of all nodes b for which the edge a -> b exists.
+
+# Input: graph = [[1, 2],[3],[3],[4],[]]
+# Output: [[0,1,3,4], [0,2,3,4]]
+# Note: The results must be returned in sorted order. You can use any built-in sort method on the results array at the end of your function before returning.
+
+# Submission:
+def csFindAllPathsFromAToB(graph, n=0, trace=[], paths=[]):
+    trace = trace.copy()
+    trace.append(n)
+    for neighbor in graph[n]:
+        if neighbor not in trace:
+            paths = csFindAllPathsFromAToB(graph, neighbor, trace, paths)
+    if n == len(graph) - 1:
+        paths.append(trace)
+    return sorted(paths)
+
