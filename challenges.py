@@ -1552,3 +1552,34 @@ def csFriendCircles(friendships):
                     count += 1
     
     return count
+
+# Second Submission
+# Passes All Tests including INPUT: [[0,0], [0,0]] OUTPUT: 0
+def csFriendCircles(friendships):
+    visited = set()
+    count = 0
+    
+    def visit_friends(row, col):
+        if ((row, col) in visited or
+            row < 0 or
+            row > len(friendships) - 1 or
+            col < 0 or
+            col > len(friendships[0]) - 1):
+            return
+        
+        visited.add((row, col))
+        
+        if friendships[row][col] == 1:
+            visit_friends(col, row)
+        
+        visit_friends(row, col + 1)
+        visit_friends(row, col - 1)
+    
+    for i in range(len(friendships)):
+        for j in range(len(friendships[i])):
+            if (i, j) not in visited:
+                visit_friends(i, j)
+                if sum(friendships[i]) > 0:
+                    count += 1
+    
+    return count
