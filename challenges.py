@@ -1583,3 +1583,33 @@ def csFriendCircles(friendships):
                     count += 1
     
     return count
+
+
+# Third Submission
+# Slight refactor to remove rows from if statement in visit_friends
+def csFriendCircles(friendships):
+    visited = set()
+    count = 0
+    
+    def visit_friends(row, col):
+        if ((row, col) in visited or
+            col < 0 or
+            col > len(friendships[0]) - 1):
+            return
+        
+        visited.add((row, col))
+        
+        if friendships[row][col] == 1:
+            visit_friends(col, row)
+        
+        visit_friends(row, col + 1)
+        visit_friends(row, col - 1)
+    
+    for i in range(len(friendships)):
+        for j in range(len(friendships[i])):
+            if (i, j) not in visited:
+                visit_friends(i, j)
+                if sum(friendships[i]) > 0:
+                    count += 1
+    
+    return count
