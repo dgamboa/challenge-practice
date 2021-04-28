@@ -32,3 +32,11 @@ print(climbingStairs(5)) # 8
 print(climbingStairs(6)) # 13
 print(climbingStairs(7)) # 21
 print(climbingStairs(38)) # 63245986
+
+# Simplified
+def climbingStairsSimplified(n):
+    a = b = 1
+    while n:
+        a, b = b, a+b
+        n -= 1
+    return a
