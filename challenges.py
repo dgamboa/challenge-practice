@@ -1646,4 +1646,32 @@ def condense_linked_list(node):
     
     return head
 
+# ********PROBLEM 2*********************************************************** #
+# Given a string s consisting of small English letters, find and return the first instance of a non-repeating character in it. If there is no such character, return '_'.
+
+# Example
+
+# For s = "abacabad", the output should be
+# first_not_repeating_character(s) = 'c'.
+
+# There are 2 non-repeating characters in the string: 'c' and 'd'. Return c since it appears in the string first.
+
+# For s = "abacabaabacaba", the output should be
+# first_not_repeating_character(s) = '_'.
+
+# There are no characters in this string that do not repeat.
+
+def first_not_repeating_character(s):
+    chars = []
+    seen = set()
+    
+    for c in s:
+        if c not in seen:
+            chars.append(c)
+            seen.add(c)
+        else:
+            if c in chars: chars.remove(c)
+    
+    return "_" if len(chars) == 0 else chars[0]
+
 
