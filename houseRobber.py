@@ -13,3 +13,11 @@ def houseRobber(nums):
             amount.append(max(cur + amount[-2], amount[-1]))
     
     return amount[-1]
+
+# Simplified
+def houseRobberSimplified(nums):
+    prev_max = 0
+    prev_prev_max = 0
+    for n in nums:
+        prev_prev_max, prev_max = prev_max, max(prev_prev_max + n, prev_max)
+    return prev_max
