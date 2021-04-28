@@ -1613,3 +1613,37 @@ def csFriendCircles(friendships):
                     count += 1
     
     return count
+
+
+# ********Final Sprint Challenge************************************************ #
+# ********PROBLEM 1*********************************************************** #
+# Given a linked list of integers, remove any nodes from the linked list that have values that have previously occurred in the linked list. Your function should return a reference to the head of the updated linked list.
+
+# Example:
+# Input: (3) -> (4) -> (3) -> (2) -> (6) -> (1) -> (2) -> (6) -> N
+# Output: (3) -> (4) -> (2) -> (6) -> (1) -> N
+# Explanation: The input list contains redundant nodes (3), (6), and (2), so those should be removed from the list.
+
+# Submission:
+# Singly-linked lists are already defined with this interface:
+# class ListNode(object):
+#   def __init__(self, x):
+#     self.value = x
+#     self.next = None
+#
+def condense_linked_list(node):
+    store = {node.value}
+    head = node
+    
+    while node.next is not None:
+        if node.next.value not in store:
+            store.add(node.next.value)
+            node = node.next
+        else:
+            cur = node.next
+            node.next = cur.next
+            cur.next = None
+    
+    return head
+
+
