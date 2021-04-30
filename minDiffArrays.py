@@ -19,17 +19,25 @@
 # So the final answer is 4, since it's the minimum possible difference.
 
 def minDiffOfArrays(a, b):
+    # aggregate the absolute difference between a[n] - b[n] for each n item
     agg = []
+
+    # track the max impact of changing each n item in a for another item in a
+    # [impact of change, index to change, index to import from]
     tracker = [0, 0, 0]
     
+    # loop through all items in b one by one
     for i in range(len(b)):
       diff = abs(a[i] - b[i])
       agg.append(diff)
+
+      # loop through all items in a one by one
       for j in range(len(a)):
         cur = diff - abs(a[j] - b[i])
         if cur > tracker[0]:
           tracker = [cur, i, j]
 
+    # change the item in a that minimizes the difference
     agg[tracker[1]] = agg[tracker[1]] - tracker[0]
     
     return sum(agg)
