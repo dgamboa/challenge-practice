@@ -20,22 +20,19 @@
 
 def minDiffOfArrays(a, b):
     agg = []
-    max_diff = 0
-    md_i = 0
+    tracker = [0, 0, 0]
     
-    for i in range(len(a)):
-        diff = abs(a[i] - b[i])
-        if diff > max_diff:
-            max_diff = diff
-            md_i = i
-        agg.append(diff)
-    
-    print(max_diff)
-    print(md_i)
-    print(a[md_i])
-    
-    if b[md_i] in a:
-        a[md_i] = b[md_i]
-        agg[md_i] = 0
+    for i in range(len(b)):
+      diff = abs(a[i] - b[i])
+      agg.append(diff)
+      for j in range(len(a)):
+        cur = diff - abs(a[j] - b[i])
+        if cur > tracker[0]:
+          tracker = [cur, i, j]
+
+    agg[tracker[1]] = agg[tracker[1]] - tracker[0]
     
     return sum(agg)
+
+print(minDiffOfArrays([1,3,5], [5,3,1])) # 4
+print(minDiffOfArrays([60,70,80], [1000,2000,3000])) # 5770
