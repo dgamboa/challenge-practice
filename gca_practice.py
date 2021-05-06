@@ -209,3 +209,77 @@ def removeOneDigit(s, t):
 # But it still didn't pass all the hidden tests (3 or 4 more)
 
 # Best score: 233/300
+
+
+
+
+# 2
+# You are given three integers in the form of strings: firstnum, secondnum, and thirdnum. Your task is to check whether it is possible to erase at most one digit from firstnum, so that the resulting string contains at least one digit, has no leading zeros and the value of thirdnum is equal to the sum of the values of firstnum and secondnum.
+
+# Return true if it's possible, otherwise return false.
+
+# Note: All three strings are provided without leading zeros.
+
+# Example
+
+# For firstnum = "10534", secondnum = "67", and thirdnum = "1120", the output should be eraseOneDigit(firstnum, secondnum, thirdnum) = true.
+
+# By erasing the 5th digit of firstnum, the result is 1053, and 1053 + 67 = 1120. So the answer is true.
+
+# For firstnum = "10000", secondnum = "67", and thirdnum = "1120", the output should be eraseOneDigit(firstnum, secondnum, thirdnum) = false.
+
+# The only possible modified values of firstnum would be 10000 (nothing was deleted), 0000 (first digit was deleted), and 1000 (any zero was deleted); none of which would produce the required sum, so the answer is false.
+
+# For firstnum = "1067", secondnum = "33", and thirdnum = "100", the output should be eraseOneDigit(firstnum, secondnum, thirdnum) = false.
+
+# We could delete the first digit of firstnum, resulting in 067 (and 67 + 33 = 100), but since in this case new firstnum value has a leading zero, it's considered invalid. So the answer is false.
+
+# For firstnum = "153", secondnum = "153", and thirdnum = "306", the output should be eraseOneDigit(firstnum, secondnum, thirdnum) = true.
+
+# Because 153 + 153 = 306, there's no need to delete a digit from firstnum, and the result is true.
+
+def eraseOneDigit(firstnum, secondnum, thirdnum):
+    for i in range(len(firstnum)):
+        new = firstnum[:i] + firstnum[i+1:]
+        if (
+            int(new) + int(secondnum) == int(thirdnum) and
+            len(new) == len(str(int(new)))
+            ):
+            return True
+    
+    if int(firstnum) + int(secondnum) == int(thirdnum):
+        return True
+    
+    return False
+
+
+# 3
+# You are given a matrix of integers matrix of size n × m and a list of queries queries. The given matrix is colored in black and white in a checkerboard style - the top left corner is colored white and any two side-neighboring cells have opposite colors.
+
+# Each query is represented as a pair of indices (i, j). For each query, perform the following operations:
+
+# Select the ith-smallest value among the black cells. In case of a tie, select the one with the lower row number. If there is still a tie, select the one with the lower column number;
+# Select the jth-smallest white cell using the same process;
+# Find the average value of these two cells;
+# If the average value is a whole integer, replace both of the selected cells with the found average value;
+# Otherwise, replace the cell of the greater value with the average rounded up to the nearest integer, and replace the cell of the smaller value with the average rounded down to the nearest integer.
+# Your task is to return the resulting matrix after processing all the queries.
+
+
+
+# 4
+# You are given an array of integers arr. Your task is to count the number of contiguous subarrays, such that each element of the subarray appears at least twice.
+
+# Example
+
+# For arr = [0, 0, 0], the output should be duplicatesOnSegment(arr) = 3.
+
+# There are 3 subarrays that satisfy the criteria of containing only duplicate elements:
+
+# arr[0..1] = [0, 0]
+# arr[1..2] = [0, 0]
+# arr[0..2] = [0, 0, 0]
+# For arr = [1, 2, 1, 2, 3], the output should be duplicatesOnSegment(arr) = 1.
+
+# There is only 1 applicable subarray: arr[0..3] = [1, 2, 1, 2].
+
