@@ -127,13 +127,11 @@ def removeOneDigit(s, t):
 
 # Given two strings s1 and s2, return the result of the special merge function you are implementing.
 
-# Example
+# Example 
 
 # For s1 = "dce" and s2 = "cccbd", the output should be
 # mergeStrings(s1, s2) = "dcecccbd".
 # All symbols from s1 goes first, because all of them have only 1 occurrence in s1 and c has 3 occurrences in s2.
-
-
     def mergeStrings(s1, s2):
     s1_ref = {}
     s2_ref = {}
