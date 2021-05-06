@@ -25,3 +25,19 @@ def encloseInBrackets(inputString):
 # properNounCorrection(noun) = "John".
 def properNounCorrection(noun):
     return noun[0].capitalize() + noun[1:].casefold()
+
+# **************************************************************************** #
+# Is Tandem Repeat?
+# **************************************************************************** #
+# Determine whether the given string can be obtained by one concatenation of some string to itself.
+
+# Example
+
+# For inputString = "tandemtandem", the output should be
+# isTandemRepeat(inputString) = true;
+# For inputString = "qqq", the output should be
+# isTandemRepeat(inputString) = false;
+# For inputString = "2w2ww", the output should be
+# isTandemRepeat(inputString) = false.
+def isTandemRepeat(inputString):
+    return inputString[len(inputString)//2:] == inputString[:len(inputString)//2]
