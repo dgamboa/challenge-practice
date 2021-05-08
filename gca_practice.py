@@ -282,4 +282,19 @@ def eraseOneDigit(firstnum, secondnum, thirdnum):
 # For arr = [1, 2, 1, 2, 3], the output should be duplicatesOnSegment(arr) = 1.
 
 # There is only 1 applicable subarray: arr[0..3] = [1, 2, 1, 2].
+def duplicatesOnSegment(a):
+  if not a or len(a) == 0:
+    return 0
+  
+  dict = {}
+
+  
+  for v in a:
+    if a not in dict:
+      dict[v] = 1
+    else:
+      dict[v] += 1
+    
+  print(dict)
+
 
