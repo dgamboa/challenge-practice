@@ -285,16 +285,26 @@ def eraseOneDigit(firstnum, secondnum, thirdnum):
 def duplicatesOnSegment(a):
   if not a or len(a) == 0:
     return 0
-  
-  dict = {}
 
+  counter = 0
+  for s in range(len(a) - 1): # O(n)
+    for e in range(s + 1, len(a)): # O(n)
+      sub = a[s:e + 1] # O(n)
+      unique = 0
+      dict = {}
+      for v in sub: # O(n)
+        if v in dict:
+          dict[v] += 1
+          unique -= 1
+        else:
+          dict[v] = 1
+          unique += 1
+      if unique <= 0:
+        counter += 1
   
-  for v in a:
-    if a not in dict:
-      dict[v] = 1
-    else:
-      dict[v] += 1
+  return counter
     
-  print(dict)
+  
+# Time Complexity: # O(n^3)
 
 
