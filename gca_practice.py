@@ -308,3 +308,119 @@ def duplicatesOnSegment(a):
 # Time Complexity: # O(n^3)
 
 
+
+
+
+# 1
+# You are given an array of integers a and two integers l and r. You task is to calculate a boolean array b, where b[i] = true if there exists an integer x, such that a[i] = (i + 1) * x and l ≤ x ≤ r. Otherwise, b[i] should be set to false.
+
+# Example
+
+# For a = [8, 5, 6, 16, 5], l = 1, and r = 3, the output should be boundedRatio(a, l, r) = [false, false, true, false, true].
+
+# For a[0] = 8, we need to find a value of x such that 1 * x = 8, but the only value that would work is x = 8 which doesn't satisfy the boundaries 1 ≤ x ≤ 3, so b[0] = false.
+# For a[1] = 5, we need to find a value of x such that 2 * x = 5, but there is no integer value that would satisfy this equation, so b[1] = false.
+# For a[2] = 6, we can choose x = 2 because 3 * 2 = 6 and 1 ≤ 2 ≤ 3, so b[2] = true.
+# For a[3] = 16, there is no an integer 1 ≤ x ≤ 3, such that 4 * x = 16, so b[3] = false.
+# For a[4] = 5, we can choose x = 1 because 5 * 1 = 5 and 1 ≤ 1 ≤ 3, so b[4] = true.
+def boundedRatio(a, l, r):
+    b = []
+    for i in range(len(a)):
+        if a[i] % (i + 1) != 0:
+            b.append(False)
+            continue
+            
+        x = a[i] / (i + 1)
+        print(x)
+        if x >= l and x <= r:
+            b.append(True)
+        else:
+            b.append(False)
+    return b
+
+
+
+
+# 2
+# You are given a string s. Your task is to count the number of ways of splitting s into three non-empty parts a, b and c (s = a + b + c) in such a way that a + b, b + c and c + a are all different strings.
+
+# NOTE: + refers to string concatenation.
+
+# Example
+
+# For s = "xzxzx", the output should be countWaysToSplit(s) = 5.
+
+# Consider all the ways to split s into three non-empty parts:
+
+# If a = "x", b = "z" and c = "xzx", then all a + b = "xz", b + c = "zxzx" and c + a = xzxx are different.
+# If a = "x", b = "zx" and c = "zx", then all a + b = "xzx", b + c = "zxzx" and c + a = zxx are different.
+# If a = "x", b = "zxz" and c = "x", then all a + b = "xzxz", b + c = "zxzx" and c + a = xx are different.
+# If a = "xz", b = "x" and c = "zx", then a + b = b + c = "xzx". Hence, this split is not counted.
+# If a = "xz", b = "xz" and c = "x", then all a + b = "xzxz", b + c = "xzx" and c + a = xxz are different.
+# If a = "xzx", b = "z" and c = "x", then all a + b = "xzxz", b + c = "zx" and c + a = xxzx are different.
+# Since there are five valid ways to split s, the answer is 5.
+def countWaysToSplit(s):
+    count = 0
+    
+    for i in range(1, len(s) - 1):
+        for j in range(2, len(s)):
+            a = s[:i]
+            b = s[i:j]
+            c = s[j:]
+            
+            if (
+                len(a) != 0 and
+                len(b) != 0 and
+                len(c) != 0 and
+                a + b != c + a and
+                a + b != b + c and
+                b + c != c + a
+            ):
+                count += 1
+    
+    return count
+
+
+# 4
+# Given an array of integers a, consider all its contiguous subarrays of length m. Calculate the number of such subarrays, which contain a pair of integers in it with sum greater than or equal to k.
+
+# More formally, given the array a, your task is to count the number of such indices 0 ≤ i ≤ a.length - m such that a subarray [a[i], a[i + 1], ..., a[i + m - 1]] contains such pair (a[s], a[t]), such that:
+
+# s ≠ t
+# a[s] + a[t] ≥ k
+# Example
+
+# For a = [2, 4, 2, 7, 1, 6, 1, 1, 1], m = 4, and k = 8, the output should be segmentsWithSum(a, m, k) = 4.
+# Let's consider all subarrays of length m = 4 and see which of them fit the description conditions:
+
+# Subarray a[0..3] = [2, 4, 2, 7] contain a pair (a[0], a[3]) that have sum greater than or equal k: a[0] + a[3] = 2 + 7 + 9 ≥ 8. Note, that there are two more such pairs in the subarray: (a[1], a[3]) and (a[2], a[3]). Also note that there is a pair (a[3], a[3]) having sum 7 + 7 = 14 ≥ 8, but it shoudn't be taken into account, because it violates condition s ≠ t.
+# Subarray a[1..4] = [4, 2, 7, 1] contains a pair (a[1], a[3]), having a[1] + a[3] = 4 + 7 = 11 ≥ 8. Note, that there is one more such pair in the subarray: (a[3], a[4]).
+# Subarray a[2..5] = [2, 7, 1, 6] contains a pair (a[2], a[3]), having a[2] + a[3] = 2 + 7 = 9 ≥ 8. Note, that there are three more such pairs: (a[2], a[5]), (a[3], a[4]), and (a[3], a[5]).
+# Subarray a[3..6] = [7, 1, 6, 1] contains a pair (a[3], a[4]) having the sum equal a[3] + a[4] = 7 + 1 = 8 ≥ 8. Note, that there is one more such pair in the subarray: (a[3], a[5]).
+# Subarray a[4..7] = [1, 6, 1, 1] doesn't contain any pair having the sum greater than or equal to k = 8.
+# Subarray a[5..8] = [6, 1, 1, 1] doesn't contain any pair having the sum greater than or equal to k = 8.
+# Summary, there are 4 subarrays having a pair with sum greater than or equal to k = 8.
+
+# For a = [2, 3, 3, 3, 4, 3, 2, 1, 2, 4], m = 2, and k = 7, the output should be segmentsWithSum(a, m, k) = 2.
+# There are 2 subarrays satisfying the description conditions: a[3..4] = [3, 4] and a[4..5] = [4, 3].
+
+def segmentsWithSum(a, m, k):
+    counter = 0
+    
+    i = 0
+    j = m
+    for i in range(len(a) - m + 1):
+        max_val = a[i]
+        for v in a[i + 1:j]:
+            # print(f"{max_val} + {v} >= {k} {max_val + v >= k}")
+            if max_val + v >= k:
+                counter += 1
+                break
+            elif v > max_val:
+                max_val = v
+        j += 1
+    
+    return counter
+
+# This solution scored 243/300 (and I had it with 15min to spare)
+# It wasn't performant on the hidden tests so there must be a more efficient way
