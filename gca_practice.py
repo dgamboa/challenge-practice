@@ -424,3 +424,145 @@ def segmentsWithSum(a, m, k):
 
 # This solution scored 243/300 (and I had it with 15min to spare)
 # It wasn't performant on the hidden tests so there must be a more efficient way
+
+# 1
+# Let's say a triple (a, b, c) is a zigzag if either a < b > c or a > b < c.
+
+# Given an array of integers numbers, your task is to check all the triples of its consecutive elements for being a zigzag. More formally, your task is to construct an array of length numbers.length - 2, where the ith element of the output array equals 1 if the triple (numbers[i], numbers[i + 1], numbers[i + 2]) is a zigzag, and 0 otherwise.
+
+# Example
+
+# For numbers = [1, 2, 1, 3, 4], the output should be isZigzag(numbers) = [1, 1, 0].
+
+# (numbers[0], numbers[1], numbers[2]) = (1, 2, 1) is a zigzag, because 1 < 2 > 1;
+# (numbers[1], numbers[2] , numbers[3]) = (2, 1, 3) is a zigzag, because 2 > 1 < 3;
+# (numbers[2], numbers[3] , numbers[4]) = (1, 3, 4) is not a zigzag, because 1 < 3 < 4;
+# For numbers = [1, 2, 3, 4], the output should be isZigzag(numbers) = [0, 0];
+
+# Since all the elements of numbers are increasing, there are no zigzags.
+
+# For numbers = [1000000000, 1000000000, 1000000000], the output should be isZigzag(numbers) = [0].
+
+# Since all the elements of numbers are the same, there are no zigzags.
+def isZigzag(numbers):
+    arr = []
+    
+    for i in range(len(numbers) - 2):
+        a, b, c = numbers[i], numbers[i + 1], numbers[i + 2]
+        
+        if a < b > c or a > b < c:
+            arr.append(1)
+        else:
+            arr.append(0)
+    
+    return arr
+
+
+
+# 2
+# You are given an array of non-negative integers numbers. You are allowed to choose any number from this array and swap any two digits in it. If after the swap operation the number contains leading zeros, they can be omitted and not considered (eg: 010 will be considered just 10).
+
+# Your task is to check whether it is possible to apply the swap operation at most once, so that the elements of the resulting array are strictly increasing.
+
+# Example
+
+# For numbers = [1, 5, 10, 20], the output should be makeIncreasing(numbers) = true.
+
+# The initial array is already strictly increasing, so no actions are required.
+
+# For numbers = [1, 3, 900, 10], the output should be makeIncreasing(numbers) = true.
+
+# By choosing numbers[2] = 900 and swapping its first and third digits, the resulting number 009 is considered to be just 9. So the updated array will look like [1, 3, 9, 10], which is strictly increasing.
+
+# For numbers = [13, 31, 30], the output should be makeIncreasing(numbers) = false.
+
+# The initial array elements are not increasing.
+# By swapping the digits of numbers[0] = 13, the array becomes [31, 31, 30] which is not strictly increasing;
+# By swapping the digits of numbers[1] = 31, the array becomes [13, 13, 30] which is not strictly increasing;
+# By swapping the digits of numbers[2] = 30, the array becomes [13, 31, 3] which is not strictly increasing;
+# So, it's not possible to obtain a strictly increasing array, and the answer is false.
+def compare(arr1, arr2):
+    store = []
+    
+    for i in range(len(arr1)):
+        if arr1[i] != arr2[i]:
+            store.append(i)
+    
+    return store
+
+def getOptions(str):
+    store = []
+    
+    for i in range(len(str) - 1):
+        store.append(int(str[i + 1:] + str[:i + 1]))
+    
+    return store
+
+def check(i, arr):
+    curr = str(arr[i])
+    
+    options = getOptions(curr)
+    
+    if i == 0:
+        for v in options:
+            if v < arr[i + 1]:
+                return True
+    elif i == len(arr) - 1:
+        for v in options:
+            if v > arr[i - 1]:
+                return True
+    else:
+        for v in options:
+            if v > arr[i - 1] and v < arr[i + 1]:
+                return True
+    
+    return False
+
+def makeIncreasing(numbers):
+    b = sorted(numbers)
+    
+    store = compare(numbers, b)
+    
+    print(store)
+    
+    if len(store) > 2 and store[-1] - store[0] != len(store) - 1:
+        return False
+    if len(store) == 0:
+        return True
+        
+    if check(store[0], numbers) or check(store[1], numbers):
+        return True
+    else:
+        return False
+
+
+
+# 4
+# Given an array of positive integers a, your task is to calculate the sum of every possible a[i] ∘ a[j], where a[i] ∘ a[j] is the concatenation of the string representations of a[i] and a[j] respectively.
+
+# Example
+
+# For a = [10, 2], the output should be concatenationsSum(a) = 1344.
+
+# a[0] ∘ a[0] = 10 ∘ 10 = 1010,
+# a[0] ∘ a[1] = 10 ∘ 2 = 102,
+# a[1] ∘ a[0] = 2 ∘ 10 = 210,
+# a[1] ∘ a[1] = 2 ∘ 2 = 22.
+# So the sum is equal to 1010 + 102 + 210 + 22 = 1344.
+
+# For a = [8], the output should be concatenationsSum(a) = 88.
+
+# There is only one number in a, and a[0] ∘ a[0] = 8 ∘ 8 = 88, so the answer is 88.
+
+# For a = [1, 2, 3], the output should be concatenationsSum(a) = 198.
+
+# a[0] ∘ a[0] = 1 ∘ 1 = 11,
+# a[0] ∘ a[1] = 1 ∘ 2 = 12,
+# a[0] ∘ a[2] = 1 ∘ 3 = 13,
+# a[1] ∘ a[0] = 2 ∘ 1 = 21,
+# a[1] ∘ a[1] = 2 ∘ 2 = 22,
+# a[1] ∘ a[2] = 2 ∘ 3 = 23,
+# a[2] ∘ a[0] = 3 ∘ 1 = 31,
+# a[2] ∘ a[1] = 3 ∘ 2 = 32,
+# a[2] ∘ a[2] = 3 ∘ 3 = 33.
+# The total result is 11 + 12 + 13 + 21 + 22 + 23 + 31 + 32 + 33 = 198.
