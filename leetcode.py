@@ -62,4 +62,58 @@ class Solution:
         ordered = sorted(nums, reverse=True)
         return (ordered[0] - 1) * (ordered[1] - 1)
 
-# Other Solution
+# Other Solution from Discussion
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        m = n = -math.inf
+        for num in nums:
+            if num >= m:
+                n = m
+                m = num
+            elif num > n:
+                n = num
+        return (m - 1) * (n - 1)
+# ******************************************************************************************************************** #
+# *************************************************** Exercise ******************************************************* #
+# ******************************************************************************************************************** #
+# A school is trying to take an annual photo of all the students. The students are asked to stand in a single file line in non-decreasing order by height. Let this ordering be represented by the integer array expected where expected[i] is the expected height of the ith student in line.
+
+# You are given an integer array heights representing the current order that the students are standing in. Each heights[i] is the height of the ith student in line (0-indexed).
+
+# Return the number of indices where heights[i] != expected[i].
+
+ 
+
+# Example 1:
+
+# Input: heights = [1,1,4,2,1,3]
+# Output: 3
+# Explanation: 
+# heights:  [1,1,4,2,1,3]
+# expected: [1,1,1,2,3,4]
+# Indices 2, 4, and 5 do not match.
+
+# Initial Solution
+class Solution:
+    def heightChecker(self, heights: List[int]) -> int:
+        counter = 0
+        ordered = sorted(heights)
+        
+        for i,v in enumerate(heights):
+            if v != ordered[i]:
+                counter += 1
+        
+        return counter
+
+# Other Solution from Discussion
+class Solution:
+    def heightChecker(self, heights: List[int]) -> int:
+        cnt = collections.Counter(heights)
+        i, ans = 1, 0
+        for h in heights:
+            while cnt[i] == 0: # non-exist height.
+                i += 1         # skip it.
+            if i != h:         # mismatch found.
+                ans += 1       # increase by 1.
+            cnt[i] -= 1        # remove the one that has been used.
+        return ans
