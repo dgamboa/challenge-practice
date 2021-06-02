@@ -73,6 +73,7 @@ class Solution:
             elif num > n:
                 n = num
         return (m - 1) * (n - 1)
+
 # ******************************************************************************************************************** #
 # *************************************************** Exercise ******************************************************* #
 # ******************************************************************************************************************** #
@@ -117,3 +118,71 @@ class Solution:
                 ans += 1       # increase by 1.
             cnt[i] -= 1        # remove the one that has been used.
         return ans
+
+# ******************************************************************************************************************** #
+# *************************************************** Exercise ******************************************************* #
+# ******************************************************************************************************************** #
+# Given two string arrays word1 and word2, return true if the two arrays represent the same string, and false otherwise.
+
+# A string is represented by an array if the array elements concatenated in order forms the string.
+
+ 
+
+# Example 1:
+
+# Input: word1 = ["ab", "c"], word2 = ["a", "bc"]
+# Output: true
+# Explanation:
+# word1 represents string "ab" + "c" -> "abc"
+# word2 represents string "a" + "bc" -> "abc"
+# The strings are the same, so return true.
+
+# Initial Solution
+class Solution:
+    def arrayStringsAreEqual(self, word1: List[str], word2: List[str]) -> bool:
+        return ''.join(word1) == ''.join(word2)
+
+# ******************************************************************************************************************** #
+# *************************************************** Exercise ******************************************************* #
+# ******************************************************************************************************************** #
+# A sentence is a list of words that are separated by a single space with no leading or trailing spaces. Each word consists of lowercase and uppercase English letters.
+
+# A sentence can be shuffled by appending the 1-indexed word position to each word then rearranging the words in the sentence.
+
+# For example, the sentence "This is a sentence" can be shuffled as "sentence4 a3 is2 This1" or "is2 sentence4 This1 a3".
+# Given a shuffled sentence s containing no more than 9 words, reconstruct and return the original sentence.
+
+ 
+
+# Example 1:
+
+# Input: s = "is2 sentence4 This1 a3"
+# Output: "This is a sentence"
+# Explanation: Sort the words in s to their original positions "This1 is2 a3 sentence4", then remove the numbers.
+
+# Initial Solution
+class Solution:
+    def sortSentence(self, s: str) -> str:
+        s_lst = s.split(" ")
+        ordered = sorted(s_lst, key=lambda x: int(x[-1]))
+        
+        ans = []
+        for v in ordered:
+            ans.append(v[:-1])
+        return " ".join(ans)
+
+# Second Solution
+class Solution:
+    def sortSentence(self, s: str) -> str:
+        s_lst = s.split(" ")
+        ordered = sorted(s_lst, key=lambda x: int(x[-1]))
+        
+        ans = ""
+        for v in ordered:
+            ans += (v[:-1] + " ")
+        return ans[:-1]
+
+# Third Solution
+class Solution:
+    def sortSentence(self, s: str) -> str:
+        return " ".join([i[:-1] for i in sorted(s.split(" "), key = lambda x: x[-1])])
