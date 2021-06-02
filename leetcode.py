@@ -186,3 +186,43 @@ class Solution:
 class Solution:
     def sortSentence(self, s: str) -> str:
         return " ".join([i[:-1] for i in sorted(s.split(" "), key = lambda x: x[-1])])
+
+
+
+# ******************************************************************************************************************** #
+# *************************************************** Exercise ******************************************************* #
+# ******************************************************************************************************************** #
+# Balanced strings are those that have an equal quantity of 'L' and 'R' characters.
+
+# Given a balanced string s, split it in the maximum amount of balanced strings.
+
+# Return the maximum amount of split balanced strings.
+
+ 
+
+# Example 1:
+
+# Input: s = "RLRRLLRLRL"
+# Output: 4
+# Explanation: s can be split into "RL", "RRLL", "RL", "RL", each substring contains same number of 'L' and 'R'.
+
+# Initial Submission
+class Solution:
+    def balancedStringSplit(self, s: str) -> int:
+        counter = R_count = L_count = 0
+        
+        for c in s:
+            if c == "R": R_count += 1 
+            if c == "L": L_count += 1
+            if R_count == L_count: counter += 1
+
+        return counter
+
+# Discussion Submission
+class Solution:
+    def balancedStringSplit(self, s: str) -> int:
+        ans = prefix = 0
+        for c in s: 
+            prefix += 1 if c == "R" else -1
+            if not prefix: ans += 1
+        return ans 
