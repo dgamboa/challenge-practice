@@ -30,7 +30,10 @@ class Solution:
         return cur_max
 
 # One-Line Solution from Comments
-
+class Solution:
+    def largestAltitude(self, gain: List[int]) -> int:
+        return max(0, max(accumulate(gain)))
+        # Slightly slower than the above, same memory usage
 
 # ******************************************************************************************************************** #
 # *************************************************** Exercise ******************************************************* #
