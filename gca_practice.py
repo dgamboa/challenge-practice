@@ -676,4 +676,23 @@ def mostFrequentDigits(a):
 # Subarray a[6..9] = [8, 5, 1, 7] doesn't contain any pair with a sum of k = 10.
 # So the answer is 5, because there are 5 contiguous subarrays that contain a pair with a sum of k = 10.
 
+def findPairsSummingToK(a, m, k):
+  counter = 0
+  have = {}
 
+  for i, n in enumerate(a):
+    if i > m - 1:
+      if have.get(a[i - m], 0) <= 1:
+        have.pop(a[i - m], None)
+      else:
+        have[a[i - m]] -= 1
+    
+    if k - n in have:
+      counter += 1 # may want to track the index
+    
+    have[n] = have.get(n, 0) + 1
+  
+  return counter
+
+example = [2, 4, 7, 5, 3, 5, 8, 5, 1, 7]
+findPairsSummingToK(example, 4, 10)
