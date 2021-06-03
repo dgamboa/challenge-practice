@@ -566,3 +566,114 @@ def makeIncreasing(numbers):
 # a[2] ∘ a[1] = 3 ∘ 2 = 32,
 # a[2] ∘ a[2] = 3 ∘ 3 = 33.
 # The total result is 11 + 12 + 13 + 21 + 22 + 23 + 31 + 32 + 33 = 198.
+
+
+# ***************************************************************************** #
+# Practice June 3
+# ***************************************************************************** #
+
+# 1
+# You are given an array of integers a and two integers l and r. You task is to calculate a boolean array b, where b[i] = true if there exists an integer x, such that a[i] = (i + 1) * x and l ≤ x ≤ r. Otherwise, b[i] should be set to false.
+
+# Example
+
+# For a = [8, 5, 6, 16, 5], l = 1, and r = 3, the output should be boundedRatio(a, l, r) = [false, false, true, false, true].
+
+# For a[0] = 8, we need to find a value of x such that 1 * x = 8, but the only value that would work is x = 8 which doesn't satisfy the boundaries 1 ≤ x ≤ 3, so b[0] = false.
+# For a[1] = 5, we need to find a value of x such that 2 * x = 5, but there is no integer value that would satisfy this equation, so b[1] = false.
+# For a[2] = 6, we can choose x = 2 because 3 * 2 = 6 and 1 ≤ 2 ≤ 3, so b[2] = true.
+# For a[3] = 16, there is no an integer 1 ≤ x ≤ 3, such that 4 * x = 16, so b[3] = false.
+# For a[4] = 5, we can choose x = 1 because 5 * 1 = 5 and 1 ≤ 1 ≤ 3, so b[4] = true.
+
+def boundedRatio(a, l, r):
+    b = []
+    
+    for i, v in enumerate(a):
+        x = v / (i + 1)
+        if int(x) == x and l <= x and x <= r:
+            b.append(True)
+        else:
+            b.append(False)
+    
+    return b
+
+# 2
+# Given an array of integers a, your task is to calculate the digits that occur the most number of times in the array. Return the array of these digits in ascending order.
+
+# Example
+
+# For a = [25, 2, 3, 57, 38, 41], the output should be mostFrequentDigits(a) = [2, 3, 5].
+
+# Here are the number of times each digit appears in the array:
+
+# 0 -> 0
+# 1 -> 1
+# 2 -> 2
+# 3 -> 2
+# 4 -> 1
+# 5 -> 2
+# 6 -> 0
+# 7 -> 1
+# 8 -> 1
+# The most number of times any number occurs in the array is 2, and the digits which appear 2 times are 2, 3 and 5. So the answer is [2, 3, 5].
+
+def mostFrequentDigits(a):
+    str1 = "".join(str(n) for n in a)
+    
+    store = {}
+    max_count = 0
+    ans = []
+    
+    for c in str1:
+        if c in store:
+            store[c] += 1
+        else:
+            store[c] = 1
+        
+        if store[c] > max_count:
+            max_count = store[c]
+            ans = [int(c)]
+        elif store[c] == max_count:
+            ans.append(int(c))
+        
+    return sorted(ans)
+
+# 3
+# Given a square matrix of positive integers a, your task is to sort the numbers in each of its diagonals parallel to the secondary diagonal. Each diagonal should contain the same set of numbers as before, but sorted in ascending order from the bottom-left to top-right.
+# For
+
+# a = [[1, 3, 9, 4],
+#      [9, 5, 7, 7],
+#      [3, 6, 9, 7],
+#      [1, 2, 2, 2]]
+# the output should be
+
+# diagonalsSort(a) = [[1, 9, 9, 7],
+#                     [3, 5, 6, 9],
+#                     [3, 4, 7, 7],
+#                     [1, 2, 2, 2]]
+
+
+# 4
+# Given an array of integers a, your task is to find how many of its contiguous subarrays of length m contain a pair of integers with a sum equal to k.
+
+# More formally, given the array a, your task is to count the number of indices 0 ≤ i ≤ a.length - m such that a subarray [a[i], a[i + 1], ..., a[i + m - 1]] contains at least one pair (a[s], a[t]), where:
+
+# s ≠ t
+# a[s] + a[t] = k
+# Example
+
+# For a = [2, 4, 7, 5, 3, 5, 8, 5, 1, 7], m = 4, and k = 10, the output should be findPairsSummingToK(a, m, k) = 5.
+
+# Let's consider all subarrays of length m = 4 and see which fit the description conditions:
+
+# Subarray a[0..3] = [2, 4, 7, 5] doesn't contain any pair of integers with a sum of k = 10. Note that although the pair (a[3], a[3]) has the sum 5 + 5 = 10, it doesn't fit the requirement s ≠ t.
+# Subarray a[1..4] = [4, 7, 5, 3] contains the pair (a[2], a[4]), where a[2] + a[4] = 7 + 3 = 10.
+# Subarray a[2..5] = [7, 5, 3, 5] contains two pairs (a[2], a[4]) and (a[3], a[5]), both with a sum of k = 10.
+# Subarray a[3..6] = [5, 3, 5, 8] contains the pair (a[3], a[5]), where a[3] + a[5] = 5 + 5 = 10.
+# Subarray a[4..7] = [3, 5, 8, 5] contains the pair (a[5], a[7]), where a[5] + a[7] = 5 + 5 = 10.
+# Subarray a[5..8] = [5, 8, 5, 1] contains the pair (a[5], a[7]), where a[5] + a[7] = 5 + 5 = 10.
+# Subarray a[6..9] = [8, 5, 1, 7] doesn't contain any pair with a sum of k = 10.
+# So the answer is 5, because there are 5 contiguous subarrays that contain a pair with a sum of k = 10.
+
+
