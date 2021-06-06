@@ -697,6 +697,36 @@ def findPairsSummingToK(a, m, k):
 example = [2, 4, 7, 5, 3, 5, 8, 5, 1, 7]
 findPairsSummingToK(example, 4, 10)
 
+# From Jonathan Mary:
+from collections import deque
+def findPairs(a, m, k):
+  count = 0
+  # store will store combinations that make k
+  store = []
+  dq = deque(a[0:4])
+  # populate the deque withy first 4 values.
+  for i in range(4):
+    if (k - a[i]) in a[i + 1:4]:
+      store.append(a[i])
+      store.append(a[k - a[i]])
+  if store != []:
+    count += 1
+  # update deque and store at each value
+  for x in a[4:]:
+    dq.append(x)
+    pp = dq.popleft()
+    if k - x in dq:
+      store.append(x)
+      store.append(k - x)
+    if k - pp in dq:
+      store.remove(pp)
+      store.remove(k - pp)
+    if store != []:
+      count += 1
+    print('dq:', dq, 'store:', store, count)
+  return count
+findPairs([2, 4, 7, 5, 3, 5, 8, 5, 1, 7], 4, 10)
+
 
 # Given two arrays, a and b, calculate how many times the following is true:
 # i <= j
