@@ -226,3 +226,22 @@ class Solution:
             prefix += 1 if c == "R" else -1
             if not prefix: ans += 1
         return ans 
+
+# **************************************************************************** #
+# *********** Exercise ******************************************************* #
+# **************************************************************************** #
+# Given the array nums consisting of 2n elements in the form [x1,x2,...,xn,y1,y2,...,yn].
+# Return the array in the form [x1,y1,x2,y2,...,xn,yn].
+
+# First Solution - low space complexity:
+class Solution:
+    def shuffle(self, nums: List[int], n: int) -> List[int]:
+        ans = []
+        
+        for x in range(n):
+            ans.append(nums[x])
+            ans.append(nums[x + n])
+        
+        return ans
+
+
