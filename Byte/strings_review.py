@@ -69,3 +69,21 @@ def sortStringTrivial(s):
   return ''.join(sorted(s))
 
 # Exercise 3: Longest substring without repeating characters (https://leetcode.com/problems/longest-substring-without-repeating-characters/)
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        start = 0
+        max_length = 0
+        
+        seen = {}
+        
+        for i, c in enumerate(s):
+            if c in seen and seen[c] >= start:
+                start = seen[c] + 1
+            else:
+                max_length = max(max_length, i - start + 1)
+                
+            seen[c] = i
+        
+        return max_length
+# Runtime: 48 ms, faster than 96.41% of Python3 online submissions for Longest Substring Without Repeating Characters.
+# Memory Usage: 14.3 MB, less than 53.12% of Python3 online submissions for Longest Substring Without Repeating Characters.
