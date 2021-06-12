@@ -354,3 +354,12 @@ class Solution:
             return 0
         else:
             return rev_num
+
+# Refactor
+class Solution:
+    def reverse(self, x: int) -> int:
+        sign = int(x/abs(x)) if x != 0 else 0
+        
+        rev_num = int(str(abs(x))[::-1])*sign
+        
+        return rev_num if -(2**31)-1 < rev_num < 2**31 else 0
