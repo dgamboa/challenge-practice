@@ -87,3 +87,34 @@ class Solution:
         return max_length
 # Runtime: 48 ms, faster than 96.41% of Python3 online submissions for Longest Substring Without Repeating Characters.
 # Memory Usage: 14.3 MB, less than 53.12% of Python3 online submissions for Longest Substring Without Repeating Characters.
+
+# **************************************************************************** #
+# ************** Day 2 ******************************************************* #
+# **************************************************************************** #
+
+# Exercise 1: Remove Duplicates ( https://leetcode.com/problems/remove-duplicates-from-sorted-array/ )
+def removeDuplicates1(nums):
+    if len(nums) == 0:
+        return 0
+    
+    curr = nums[0]
+    i = 1
+    
+    for n in nums:
+        if curr != n:
+            nums[i] = n
+            curr = n
+            i += 1
+    
+    return i
+
+# Refactor:
+def removeDuplicates2(nums):
+    pointer = 0
+    
+    for i in range(1, len(nums)):
+        if nums[pointer] != nums[i]:
+            pointer += 1
+            nums[pointer] = nums[i]
+            
+    return pointer + 1
