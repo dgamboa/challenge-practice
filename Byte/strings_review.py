@@ -118,3 +118,57 @@ def removeDuplicates2(nums):
             nums[pointer] = nums[i]
             
     return pointer + 1
+
+# Exercise 2: Is String Palindrome ( https://leetcode.com/problems/valid-palindrome/ )
+# Partial Solution:
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        lower_s = s.casefold()
+        rev_lower_s = lower_s[::-1]
+        
+        print(lower_s)
+        print(rev_lower_s)
+        
+        i = 0
+        j = 0
+        
+        for x in range(len(s)):
+            for y in range(i, len(s)):
+                if ord('a') <= ord(lower_s[y]) <= ord('z'):
+                    break    
+                else:
+                    i += 1
+            
+            for y in range(j, len(s)):
+                if ord('a') <= ord(rev_lower_s[y]) <= ord('z'):
+                    break    
+                else:
+                    j += 1
+            
+            if lower_s[i] != rev_lower_s[j]:
+                print(i)
+                print(j)
+                return False
+            else:
+                i += 1
+                j += 1
+            
+            if i == len(s) or j == len(s):
+                break
+        
+        return True
+            
+            
+
+# Working Solution (two-pointers beginning and end):
+def isPalindrome(self, s):
+    l, r = 0, len(s)-1
+    while l < r:
+        while l < r and not s[l].isalnum():
+            l += 1
+        while l <r and not s[r].isalnum():
+            r -= 1
+        if s[l].lower() != s[r].lower():
+            return False
+        l +=1; r -= 1
+    return True
