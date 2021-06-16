@@ -92,3 +92,56 @@ class Solution:
                 res.append(start)
 
         return res
+
+# **************************************************************************** #
+# ************** Day 3 ******************************************************* #
+# **************************************************************************** #
+
+# Exercise 1: reverse a linked list (https://leetcode.com/problems/reverse-linked-list/)
+
+# First solution:
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        if head is None or head.next is None:
+            return head
+        
+        pre = None
+        nex = head.next
+        cur = head
+
+        while cur != None:
+            cur.next = pre
+            pre = cur
+            cur = nex
+            if cur:
+                nex = cur.next
+
+        return pre
+
+# Refactored:
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        if head is None or head.next is None:
+            return head
+        
+        cur = head
+        nex = cur.next
+        cur.next = None
+
+        while nex != None:
+            pre = cur
+            cur = nex
+            nex = cur.next
+            cur.next = pre
+
+        return cur
