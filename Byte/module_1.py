@@ -145,3 +145,51 @@ class Solution:
             cur.next = pre
 
         return cur
+
+# Exercise 2: implement stack with queue (https://leetcode.com/problems/implement-stack-using-queues/)
+
+# Solution:
+from collections import deque
+
+class MyStack:
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.main = deque()
+        self.store = deque()
+
+    def push(self, x: int) -> None:
+        """
+        Push element x onto stack.
+        """
+        main = self.main
+        store = self.store
+        
+        while len(main) > 0:
+            store.append(main.popleft())
+        
+        main.append(x)
+        
+        while len(store) > 0:
+            main.append(store.popleft())
+        
+        return
+
+    def pop(self) -> int:
+        """
+        Removes the element on top of the stack and returns that element.
+        """
+        return self.main.popleft()
+
+    def top(self) -> int:
+        """
+        Get the top element.
+        """
+        return self.main[0]
+
+    def empty(self) -> bool:
+        """
+        Returns whether the stack is empty.
+        """
+        return len(self.main) == 0
