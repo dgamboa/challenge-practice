@@ -193,3 +193,20 @@ class MyStack:
         Returns whether the stack is empty.
         """
         return len(self.main) == 0
+
+# **************************************************************************** #
+# ************** Day 6 ******************************************************* #
+# **************************************************************************** #
+
+# Exercise 1: element in a rotated array (https://leetcode.com/problems/search-in-rotated-sorted-array/)
+
+# Solution in O(n):
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        for i, n in enumerate(nums):
+            if n == target:
+                return i
+        
+        return -1
+
+# Solution in O(log n):
