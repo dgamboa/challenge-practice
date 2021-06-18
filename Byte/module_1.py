@@ -210,3 +210,20 @@ class Solution:
         return -1
 
 # Solution in O(log n):
+# TBD
+
+
+# Exercise 2: number of 1 digits in binary rep (https://leetcode.com/problems/number-of-1-bits)
+
+# First Solution:
+class Solution:
+    def hammingWeight(self, n: int) -> int:
+        binary = '{0:08b}'.format(n)
+        
+        count = 0
+        
+        for c in binary:
+            if c == '1':
+                count += 1
+        
+        return count
