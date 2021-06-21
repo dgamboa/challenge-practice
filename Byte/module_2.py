@@ -6,8 +6,8 @@
 # 5. Test your solution [5 minutes]
 
 # Day 1,2 ******************************************************************** #
-# Focus: understand the problem ********************************************** #
-# **************************************************************************** #
+# Focus Day 1: understand the problem **************************************** #
+# Focus Day 2: brute force solutions ***************************************** #
 
 # Exercise 1: Maximum Sum Subarray
 # Link: (https://leetcode.com/problems/maximum-subarray/)
@@ -19,6 +19,25 @@
 def maxSubArray(nums):
   print(nums)
 
+# Import math module to use negative infinity as initial max
+import math
+
+def maxSubArrayBF(nums):
+  # set variable to track max sum and start with negative infinity
+  max_tracker = -math.inf
+
+  # Manage size of subarray with outer loop
+  for size in range(1, len(nums) + 1): # -> includes size = 1, 2, 3
+    # Manage the start of the subarray with inner loop
+    for start in range(len(nums) - size + 1): # -> includes start at 0, 1, 3; 0, 1; 0
+      # Create the subarray with start and start + size
+      subarr = nums[start: start + size]
+      # Sum the subarray
+      sub_sum = sum(subarr)
+      # Track the max sum so far
+      max_tracker = max(max_tracker, sub_sum)
+  
+  return max_tracker
 
 # Exercise 2: Number of Islands
 # Link: (https://leetcode.com/problems/number-of-islands/)
