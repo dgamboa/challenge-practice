@@ -5,7 +5,7 @@
 # 4. Code your solution [15 minutes]
 # 5. Test your solution [5 minutes]
 
-# Day 1 ********************************************************************** #
+# Day 1,2 ******************************************************************** #
 # Focus: understand the problem ********************************************** #
 # **************************************************************************** #
 
@@ -83,3 +83,30 @@ def merge(intervals):
 # IN: binary tree root / OUT: max depth of the binary tree
 def maxDepth(root):
   print(root)
+
+
+# Exercise 6: Linked List Cycles
+# Link: (https://leetcode.com/problems/linked-list-cycle/)
+# Assumptions: values are only used once in the list and are effectively IDs, list is made up of nodes with val and next properties
+# Examples walk through ✅
+# Custom examples (edges): 
+  # head = [1,2,3] => -1
+  # head = [1,2,3,1] => 0
+  # head = [1,2,3,3] => 2
+# Function signature: def hasCycle(head: ListNode) -> bool:
+# IN: head of linked list / OUT: true if linked list has a cycle else false
+def hasCycle(head):
+  print(head)
+
+# Exercise 7: Buy and Sell Stock
+# Link: (https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
+# Assumptions: prices are 0 or positive integers, every integer represents a snapshot price for the day and the only opportunity to buy or sell, max profit is the biggest difference between and sell, you only buy and sell once
+# Examples walk through ✅
+# Custom examples (edges): 
+  # [5,4,3,1] => 0
+  # [2,4,3,1] => 2
+  # [5,1,1,6] => 5
+# Function signature: def maxProfit(prices: List[int]) -> int:
+# IN: array of integers representing prices / OUT: max profit from buying one day and selling any other day
+def maxProfit(prices):
+  print(prices)
