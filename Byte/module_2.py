@@ -5,9 +5,9 @@
 # 4. Code your solution [15 minutes]
 # 5. Test your solution [5 minutes]
 
-# Day 1,2 ******************************************************************** #
+# Day 1,2,3 ****************************************************************** #
 # Focus Day 1: understand the problem **************************************** #
-# Focus Day 2: brute force solutions ***************************************** #
+# Focus Day 2, 3: brute force solutions ************************************** #
 
 # Exercise 1: Maximum Sum Subarray
 # Link: (https://leetcode.com/problems/maximum-subarray/)
@@ -143,8 +143,33 @@ def numIslandsBF(grid):
 # Function signature: def climbStairs(n: int) -> int:
 # IN: number of steps integer / OUT: number of combinations integer
 def climbStairs(n):
-  print(n)
+  # Set a base case: there's 1 way to climb 1 stair and 0 ways to climb 0 stairs
+  # Then there's 2 ways to climb 2 stairs
+  # And there's 3 ways to climb 3 stairs
+  # And there's 5 ways to climb 4 stairs
 
+  # Set a numberOfWaysPrev counter at 0:
+  # Set a numberOfWaysCurr counter at 1:
+
+  # Set a stairsNumber variable at 1:
+
+  # While stairsNumber is less than n:
+    # temp = numberOfWaysCurr
+    # numberOfWaysCurr = numberOfWaysCurr + numberOfWaysPrev
+    # numberOfWaysPrev = temp
+    # stairsNumber += 1
+  
+  # return numberOfWaysCurr
+
+  # Problem exhibits fibonacci sequence at n + 1:
+  #                 n = 0, f = 0
+  # 1 -> 1 (0 + 1)  n = 1, f = 1
+  # 2 -> 2 (1 + 1)  n = 2, f = 1
+  # 3 -> 3 (2 + 1)  n = 3, f = 2
+  # 4 -> 5 (3 + 2)  n = 4, f = 3
+  # 5 -> 8 (5 + 3)  n = 5, f = 5
+  # 6 -> 13 (8 + 5) n = 6, f = 8
+  print(n)
 
 # Exercise 4: Merge Intervals
 # Link: (https://leetcode.com/problems/merge-intervals/)
