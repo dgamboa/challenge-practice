@@ -31,7 +31,7 @@ def maxSubArrayBF(nums):
     # Manage the start of the subarray with inner loop
     for start in range(len(nums) - size + 1): # -> includes start at 0, 1, 3; 0, 1; 0
       # Create the subarray with start and start + size
-      subarr = nums[start: start + size]
+      subarr = nums[start : start + size]
       # Sum the subarray
       sub_sum = sum(subarr)
       # Track the max sum so far
@@ -63,6 +63,74 @@ def maxSubArrayBF(nums):
 def numIslands(grid):
   print(grid)
 
+# Helper method to add neighbors to tracker
+def trackSelfAndNeighbors(t,g,r,c):
+  k = str(r) + str(c)
+  t[k] = t.get(k, g[r][c])
+
+  if r != 0:
+    k1 = str(r - 1) + str(c)
+    t[k1] = t.get(k1, g[r - 1][c])
+
+  if c != 0:
+    k2 = str(r) + str(c - 1)
+    t[k2] = t.get(k2, g[r][c - 1])
+
+  if r != len(g) - 1:
+    k3 = str(r + 1) + str(c)
+    t[k3] = t.get(k3, g[r + 1][c])
+
+  if c != len(g[0]) - 1:
+    k4 = str(r) + str(c + 1)
+    t[k4] = t.get(k4, g[r][c + 1])
+  
+def checkLandConnection(t,g,r,c):
+  flag = not not int(t.get(g[r][c], '0'))
+
+  if r != 0:
+    k1 = str(r - 1) + str(c)
+    flag = not not int(t.get(k1, '0')) or flag
+
+  if c != 0:
+    k2 = str(r) + str(c - 1)
+    flag = not not int(t.get(k2, '0')) or flag
+
+  if r != len(g) - 1:
+    k3 = str(r + 1) + str(c)
+    flag = not not int(t.get(k3, '0')) or flag
+
+  if c != len(g[0]) - 1:
+    k4 = str(r) + str(c + 1)
+    flag = not not int(t.get(k4, '0')) or flag
+  
+  return not flag
+
+def numIslandsBF(grid):
+  # Set up islands counter
+  islands = 0
+
+  # Set up tracker of land with key as position (e.g. 00, 01, 02, 10, 11, 12, 20, 21, 22) and value as "1" or "0"
+  land_tracker = {}
+
+  # Loop through grid with nested loops for row and column
+  for r in range(len(grid)):
+    for c in range(len(grid[0])):
+      # If string in that position is water (i.e. "0"), move on
+      if grid[r][c] == "0":
+        continue
+      # If string is land (i.e. "1")
+      else:
+        # Check if it has been included in an island already
+        if checkLandConnection(land_tracker,grid,r,c):
+          # Add to counter, found new island!
+          islands += 1
+        
+        # Add neighbors to the tracker
+        trackSelfAndNeighbors(land_tracker,grid,r,c)
+  
+  return islands
+
+  # when I track self and neighbors, I should recursively move through the neighbors to track them and include a base case <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 # Exercise 3: Climbing Stairs
 # Link: (https://leetcode.com/problems/climbing-stairs/)
