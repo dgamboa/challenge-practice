@@ -143,6 +143,7 @@ def numIslandsBF(grid):
 # Function signature: def climbStairs(n: int) -> int:
 # IN: number of steps integer / OUT: number of combinations integer
 def climbStairs(n):
+  print(n)
   # Set a base case: there's 1 way to climb 1 stair and 0 ways to climb 0 stairs
   # Then there's 2 ways to climb 2 stairs
   # And there's 3 ways to climb 3 stairs
@@ -169,7 +170,7 @@ def climbStairs(n):
   # 4 -> 5 (3 + 2)  n = 4, f = 3
   # 5 -> 8 (5 + 3)  n = 5, f = 5
   # 6 -> 13 (8 + 5) n = 6, f = 8
-  print(n)
+
 
 # Exercise 4: Merge Intervals
 # Link: (https://leetcode.com/problems/merge-intervals/)
@@ -182,6 +183,35 @@ def climbStairs(n):
 # IN: intervals list (i.e. list of lists with two ints each) / OUT: consolidated list of lists
 def merge(intervals):
   print(intervals)
+# First pseudocode brainstorm:
+  # Cycle through each pair
+  # Loop through a pair of intervals for length - 1 times:
+    # First Loop:
+      # first interval:   start_1 and end_1
+      # second interval:  start_2 and end_2
+      # If end_1 >= start_2:
+        # Create a new array replacing first interval and second interval with updated interval: start_1, end_2
+    # Second Loop:
+      # first interval (updated interval):  start_1 and end_1
+      # second interval:                    start_2 and end_2
+      # If end_1 >= start_2:
+        # Create a new array replacing first interval and second interval with updated interval: start_1, end_2
+      # Else:
+        # first interval: second interval
+        # second interval: third interval
+  
+  # Second pseudocode brainstorm:
+  # first = 0
+  # While loop: while first < len(intervals) - 1:  --> while first interval index is less than the length of the intervals list minus one
+    # first_interval = intervals[first]
+    # second_interval = intervals[first + 1]
+    # if first_interval[1] >= second_interval[0]:
+      # intervals[first:first + 2] = [first_interval[0], second_interval[1]]
+    # else:
+      # first += 1
+    # break if len(intervals) == 1
+  
+  # return intervals
 
 
 # Exercise 5: Max Binary Tree Depth
