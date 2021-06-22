@@ -39,6 +39,20 @@ def maxSubArrayBF(nums):
   
   return max_tracker
 
+# Optimization:
+# Time Complexity of BF Solution: O(n^2) -> because n * (n + 1) / 2 simplifies to n^2; although the above may be O(n^3) taking into account that building subarrays using start and start + size is O(n--)
+# Space Complexity of BF Solution: O(n) -> subarr is an array that will grow to the size of the input
+# Best conceivable runtime: it seems like O(n^2) may be the optimal runtime because we have to compute all possible subarrays to determine the largest one
+
+# Description:
+# Set a tracker variable for the max sum at negative infinity
+# Iterate through every subarray and compare its sum to the previous max
+  # Iterate by establishing a size outer loop that cycles through the smallest subarray to the full array,
+  # and a start inner loop that determines the subarray start index; start increments until the subarray end is the last index of the main array based on size
+# If the sum is higher, update the max
+# Return the max sum
+
+
 # Exercise 2: Number of Islands
 # Link: (https://leetcode.com/problems/number-of-islands/)
 # Assumptions: grid edges are surrounded by water, 1s are land, 0s are water, 2D binary grid, not connected unless adjacent hz or vt, numbers are strings
