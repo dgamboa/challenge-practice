@@ -270,20 +270,24 @@ def maxDepth(root):
 # Function signature: def hasCycle(head: ListNode) -> bool:
 # IN: head of linked list / OUT: true if linked list has a cycle else false
 def hasCycle(head):
-  print(head)
-
   # Create a hash table
-
+  tracker = {}
   # Add head.val to the hash table
-
+  tracker[head.val] = head
   # Make variable cur = head
-
+  cur = head
   # Create while loop on cur.next is not None
-
-  # If cur.next.val is in the hash table and it's pointing to the node seen, return True
-  # Otherwise add cur.next to the hash table and cur = cur.next
+  while cur.next is not None:
+    # If cur.next.val is in the hash table and it's pointing to the node seen, return True
+    if cur.next.val in tracker and tracker[cur.next.val] = cur.next:
+      return True
+    # Otherwise add cur.next to the hash table and cur = cur.next
+    else:
+      tracker[cur.next.val] = cur.next
+      cur = cur.next
 
   # After the loop, return False
+  return False
 
 
 # Exercise 7: Buy and Sell Stock
