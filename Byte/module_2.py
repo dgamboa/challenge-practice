@@ -230,7 +230,7 @@ def merge(intervals):
 
 # Exercise 5: Max Binary Tree Depth
 # Link: (https://leetcode.com/problems/maximum-depth-of-binary-tree/)
-# Assumptions: root of binary tree has value, left, and right pointers; value is 0 and positive integers, root counts as 1 depth
+# Assumptions: root of binary tree has value, left, and right pointers; value can be 0 and positive integers, root counts as 1 depth
 # Examples walk through ✅
 # Custom examples (edges): 
   # root = [3,9,20,null,null,15,7] => 3
@@ -240,6 +240,22 @@ def merge(intervals):
 def maxDepth(root):
   print(root)
 
+  # Establish base case:
+  # if root is null: return 0
+
+  # Establish a counter variable that accounts for root depth of 1 -> counter = 1
+  # Set a left_depth variable equal to this function to recursively explore the left node
+  # Set a right_depth variable equal to this function to recursively explore the right node
+
+  # Return counter + the max of left_depth and right_depth
+  if root is None:
+    return 0
+
+  counter = 1
+  left_depth = maxDepth(root.left)
+  right_depth = maxDepth(root.right)
+
+  return counter + max(left_depth, right_depth)
 
 # Exercise 6: Linked List Cycles
 # Link: (https://leetcode.com/problems/linked-list-cycle/)
