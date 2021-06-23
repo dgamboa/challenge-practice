@@ -146,6 +146,15 @@ def numIslandsBF(grid):
 
   # when I track self and neighbors, I should recursively move through the neighbors to track them and include a base case <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+# Optimization:
+# The above solution is very complex and doesn't run on all edge cases. My sense is that it uses O(n^2) time because it hits all values in the matrix several times
+# I think the best way to optimize this would be by using depth-first or breadth-first search across the matrix
+# Best conceivable runtime: it seems like there may be a way to do this in O(n) time by reviewing each number only once
+
+# Description:
+# TBD
+
+
 # Exercise 3: Climbing Stairs
 # Link: (https://leetcode.com/problems/climbing-stairs/)
 # Assumptions: it takes n individual steps to the top, you can only climb by 1 or 2 steps, max 45 steps
