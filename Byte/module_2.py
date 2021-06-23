@@ -7,7 +7,7 @@
 
 # Day 1,2,3,4 **************************************************************** #
 # Focus Day 1: understand the problem **************************************** #
-# Focus Day 2, 3: brute force solutions ************************************** #
+# Focus Day 2,3,4: brute force solutions ************************************* #
 
 # Exercise 1: Maximum Sum Subarray
 # Link: (https://leetcode.com/problems/maximum-subarray/)
@@ -257,9 +257,11 @@ def maxDepth(root):
 
   return counter + max(left_depth, right_depth)
 
+
 # Exercise 6: Linked List Cycles
 # Link: (https://leetcode.com/problems/linked-list-cycle/)
-# Assumptions: values are only used once in the list and are effectively IDs, list is made up of nodes with val and next properties
+# Assumptions 1: values are only used once in the list and are effectively IDs, list is made up of nodes with val and next properties
+# Assumptions 2: values can be used more than once in the list
 # Examples walk through ✅
 # Custom examples (edges): 
   # head = [1,2,3] => -1
@@ -269,6 +271,20 @@ def maxDepth(root):
 # IN: head of linked list / OUT: true if linked list has a cycle else false
 def hasCycle(head):
   print(head)
+
+  # Create a hash table
+
+  # Add head.val to the hash table
+
+  # Make variable cur = head
+
+  # Create while loop on cur.next is not None
+
+  # If cur.next.val is in the hash table and it's pointing to the node seen, return True
+  # Otherwise add cur.next to the hash table and cur = cur.next
+
+  # After the loop, return False
+
 
 # Exercise 7: Buy and Sell Stock
 # Link: (https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
