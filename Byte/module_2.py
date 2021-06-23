@@ -194,6 +194,15 @@ def climbStairs(n):
   # 5 -> 8 (5 + 3)  n = 5, f = 5
   # 6 -> 13 (8 + 5) n = 6, f = 8
 
+  # Optimization:
+  # Time Complexity: This solution cycles through n time so it's O(n)
+  # Space Complexity: This is O(1) since we always store the same amount of information regardless of how large n grows
+  # Best Conceivable Runtime: O(n) because we will need to iterate over all the steps at least once
+  # Description:
+  # Use a previous and current point set at 0 and 1 to start with
+  # Then iterate with a while loop that climbs the stairs one by one
+  # As the loop climbs, it increments the number of ways to climb by the current number of ways plus the previous number of ways
+
 
 # Exercise 4: Merge Intervals
 # Link: (https://leetcode.com/problems/merge-intervals/)
