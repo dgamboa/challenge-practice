@@ -317,10 +317,14 @@ def hasCycle(head):
   return False
 
   # Optimization:
-  # Time Complexity: This solution goes through each node once so it's O(n)
-  # Space Complexity: Because we use recursion, this solution requires O(n) memory (i.e. technically depth/2 since the stack only grows fully to one side before returning)
-  # Best Conceivable Runtime: O(n) because we will need to go to each node at least once to determine depth
+  # Time Complexity: O(n) because we view each linked item once
+  # Space Complexity: O(n) because we use a hash table to track the items already seen
+  # Best Conceivable Runtime: In order to determine a cycle, we'll have to view each item once in the worst case so O(n)
   # Description:
+  # Add the head node to the tracker
+  # Loop through all nodes
+  # If we come across a node we've seen (i.e. the value is in the keys of tracker, and the value of that key is the node object), return True
+  # If we finish looping (i.e. get to a None), then return False
 
 
 # Exercise 7: Buy and Sell Stock
