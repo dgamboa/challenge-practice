@@ -275,10 +275,19 @@ def maxDepth(root):
 
   return counter + max(left_depth, right_depth)
 
+  # Optimization:
+  # Time Complexity: This solution goes through each node once so it's O(n)
+  # Space Complexity: Because we use recursion, this solution requires O(n) memory (i.e. technically depth/2 since the stack only grows fully to one side before returning)
+  # Best Conceivable Runtime: O(n) because we will need to go to each node at least once to determine depth
+  # Description:
+  # If the node is empty, return a 0 for no depth
+  # Otherwise, count the node depth as 1, then count all the nodes to its left and right in the same way
+  # Finally, return the counter (i.e. the root node's depth of 1) plus the deepest branch, either left or right
+
 
 # Exercise 6: Linked List Cycles
 # Link: (https://leetcode.com/problems/linked-list-cycle/)
-# Assumptions 1: values are only used once in the list and are effectively IDs, list is made up of nodes with val and next properties
+# Assumptions 1: values are only used once in the list and are effectively IDs -- wrong assumption, list is made up of nodes with val and next properties
 # Assumptions 2: values can be used more than once in the list
 # Examples walk through ✅
 # Custom examples (edges): 
@@ -306,6 +315,12 @@ def hasCycle(head):
 
   # After the loop, return False
   return False
+
+  # Optimization:
+  # Time Complexity: This solution goes through each node once so it's O(n)
+  # Space Complexity: Because we use recursion, this solution requires O(n) memory (i.e. technically depth/2 since the stack only grows fully to one side before returning)
+  # Best Conceivable Runtime: O(n) because we will need to go to each node at least once to determine depth
+  # Description:
 
 
 # Exercise 7: Buy and Sell Stock
