@@ -331,10 +331,27 @@ def maxProfit(prices):
 # Input: prices = [7,5,5,3,3,2]
 # Output: 0
 
+  # Brute Force:
   # Set a variable profit = 0
+  profit = 0
 
   # Loop through all prices in price array (price_a):
+  for i in range(0, len(prices) - 1): # 0 -> 5 exclusive (i.e. 4)
     # Loop through all prices to the right of the selected price (price_b):
+    for j in range(i + 1, len(prices)): # i + 1 (i.e. 1 to the right) -> 6 exclusive (i.e. 5)
       # profit = max(profit, price_b - price_a)
+      profit = max(profit, prices[j] - prices[i])
+  
+  # Return profit
+  return profit
+
+  # Another approach:
+  # Set variable lowest = prices[0]
+  # Set variable profit = 0
+
+  # Loop starting with index 1 (i.e. second price)
+    # Is price lower than lowest?
+      # Yes: set lowest to price
+      # No: check max(profit, price - lowest)
   
   # Return profit
