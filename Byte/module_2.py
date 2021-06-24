@@ -7,7 +7,7 @@
 
 # Day 1,2,3,4 **************************************************************** #
 # Focus Day 1: understand the problem **************************************** #
-# Focus Day 2,3,4: brute force solutions ************************************* #
+# Focus Day 2,3,4,5: brute force solutions & optimization ******************** #
 
 # Exercise 1: Maximum Sum Subarray
 # Link: (https://leetcode.com/problems/maximum-subarray/)
@@ -320,3 +320,21 @@ def hasCycle(head):
 # IN: array of integers representing prices / OUT: max profit from buying one day and selling any other day
 def maxProfit(prices):
   print(prices)
+
+# Example:
+# Input: prices = [7,1,5,3,6,4]
+# Output: 5
+
+# Input: prices = [7,4,5,3,6,1]
+# Output: 3
+
+# Input: prices = [7,5,5,3,3,2]
+# Output: 0
+
+  # Set a variable profit = 0
+
+  # Loop through all prices in price array (price_a):
+    # Loop through all prices to the right of the selected price (price_b):
+      # profit = max(profit, price_b - price_a)
+  
+  # Return profit
