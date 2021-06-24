@@ -347,11 +347,19 @@ def maxProfit(prices):
 
   # Another approach:
   # Set variable lowest = prices[0]
+  lowest = prices[0]
   # Set variable profit = 0
+  profit = 0
 
   # Loop starting with index 1 (i.e. second price)
+  for i in range(1, len(prices)):
     # Is price lower than lowest?
       # Yes: set lowest to price
       # No: check max(profit, price - lowest)
+    if prices[i] < lowest:
+      lowest = prices[i]
+    else:
+      profit = max(profit, prices[i] - lowest)
   
   # Return profit
+  return profit
