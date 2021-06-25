@@ -775,3 +775,152 @@ b = [-1,1,1,3,9,7,7,0,-1,8,3,0]
 print(checkArraysSlow(a, b))
 print(checkArraysNR(a, b))
 print(checkArrays(a, b))
+
+
+# GCA Practice 6/24 ********************************************************** #
+# Score 834 ****************************************************************** #
+
+# 1 boundedRatio
+
+
+# 2 makeIncreasing -> Score: 210/300
+# You are given an array of non-negative integers numbers. You are allowed to choose any number from this array and swap any two digits in it. If after the swap operation the number contains leading zeros, they can be omitted and not considered (eg: 010 will be considered just 10).
+
+# Your task is to check whether it is possible to apply the swap operation at most once, so that the elements of the resulting array are strictly increasing.
+
+# Example
+
+# For numbers = [1, 5, 10, 20], the output should be makeIncreasing(numbers) = true.
+
+# The initial array is already strictly increasing, so no actions are required.
+
+# For numbers = [1, 3, 900, 10], the output should be makeIncreasing(numbers) = true.
+
+# By choosing numbers[2] = 900 and swapping its first and third digits, the resulting number 009 is considered to be just 9. So the updated array will look like [1, 3, 9, 10], which is strictly increasing.
+
+# For numbers = [13, 31, 30], the output should be makeIncreasing(numbers) = false.
+
+# The initial array elements are not increasing.
+# By swapping the digits of numbers[0] = 13, the array becomes [31, 31, 30] which is not strictly increasing;
+# By swapping the digits of numbers[1] = 31, the array becomes [13, 13, 30] which is not strictly increasing;
+# By swapping the digits of numbers[2] = 30, the array becomes [13, 31, 3] which is not strictly increasing;
+# So, it's not possible to obtain a strictly increasing array, and the answer is false
+def makeIncreasing(numbers):
+    store = {}
+    
+    for i in range(len(numbers) - 1):
+        if numbers[i] > numbers[i + 1]:
+            store[numbers[i]] = i
+    
+    if len(store) == 0:
+        return True
+    elif len(store) > 1:
+        return False
+    
+    return False
+
+
+# 3 constructorNames -> Score: 300/300
+# Suppose you are creating a new programming language. This language will support OOP, and to make it special, you want some features of it to differ from the standard.
+
+# In some languages (such as C or Java), class constructor names are forced to have the same name as the class. Here you want to weaken this restriction, and to allow constructor names to be acceptable as long as they're close to the class name. We will consider two strings close if one can be obtained from the other, using the following operations:
+
+# swap any two symbols in one of the strings,
+# swap occurrences of any two existing symbols in one of the strings (for example, if your string contains both as and bs, you can change all as to bs and all the bs to as).
+# Now you want to write a method that finds out whether the given methodName is considered close to the given className, by the definition above.
+
+# Hint: One of the possible ways to solve the task might be the following. For both methodName and className build a map with the numbers of occurrences of each symbol. Then check whether the sets of the keys of both maps, containing symbols of the names, are equal. Since all occurrences of any two existing symbols can be freely swapped, you can, finally, check whether the multisets of the values of both maps are also equal.
+
+# Example
+
+# For className = "abbzccc" and methodName = "babzzcz", the output should be
+# constructorNames(className, methodName) = true.
+
+# One possible way to transform "abbzccc" to "babzzcz" is this:
+
+# "abbzccc" (this string is className)
+# "babzccc" (swap positions of the first two characters)
+# "babczzz" (switch all c and z characters)
+# "babzzcz" (swap positions of the characters at indices 3 and 5; this string is now methodName)
+def constructorNames(className, methodName):
+    c = {}
+    m = {}
+    
+    for x in className:
+        if x in c:
+            c[x] += 1
+        else:
+            c[x] = 1
+    
+    for x in methodName:
+        if x in m:
+            m[x] += 1
+        else:
+            m[x] = 1
+    
+    c_list_k = [key for key in c.keys()]
+    m_list_k = [key for key in m.keys()]
+    
+    if set(c_list_k) != set(m_list_k):
+        return False
+    
+    c_list_v = [value for value in c.values()]
+    m_list_v = [value for value in m.values()]
+    
+    if sorted(c_list_v) != sorted(m_list_v):
+        return False
+    
+    return True
+
+
+# 4 maximalPalindrome -> Score: 300/300
+# You're developing a new programming language with some unusual features for strings! Among these is a method that returns the longest palindrome that can be formed with the characters of a given string.
+
+# Given a string s, your task is to find this longest possible palindrome. You may use any number of the characters from s, and arrange them in any order (so long as it results in a palindrome).
+
+# If there are multiple longest palindromes that can be formed, return the one among them that's lexicographically smallest.
+
+# Example
+
+# For s = "aaabb", the output should be maximalPalindrome(s) = "ababa".
+
+# There are two possible palindromes of length 5 that can be obtained ("ababa" and "baaab"), but "ababa" is lexicographically smaller, thus it is the answer.
+
+# For s = "aaabbbcc", the output should be maximalPalindrome(s) = "abcacba".
+
+# It's not possible to form a palindrome of length 8, but from several palindromes of length 7, "abcacba" is the lexicographically smallest, thus it is the answer.
+
+# Input/Output
+
+# [execution time limit] 4 seconds (py3)
+
+# [input] string s
+
+# The given string.
+
+# Guaranteed constraints:
+# 1 ≤ s.length ≤ 105.
+
+# [output] string
+
+# The lexicographically smallest palindrome with maximal length that can be built from the given string s.
+def maximalPalindrome(s):
+    store = [0] * 26
+    
+    for c in s:
+        store[ord(c) - ord('a')] += 1
+    
+    front = ""
+    back = ""
+    middle = ""
+    
+    for i, n in enumerate(store):
+        times = n // 2
+        if n > 0:
+            front = front + chr(i + ord('a')) * times
+            back = chr(i + ord('a')) * times + back
+        
+        if middle == "" and n % 2 != 0:
+            middle = chr(i + ord('a'))
+
+    return front + middle + back
