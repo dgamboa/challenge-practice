@@ -8,7 +8,7 @@
 def max_sub_array_of_size_k(k, arr):
   _max = 0
 
-  for i in range(len(arr)):
+  for i in range(len(arr) - k + 1):
       _max = max(_max, sum(arr[i:k + i]))
   
   return _max
@@ -36,7 +36,7 @@ def smallest_subarray_with_given_sum(s, arr):
   for i in range(1, len(arr)):
     for j in range(len(arr) - i + 1):
       if sum(arr[j:j + i]) >= s:
-        return i
+        return i # Because we're exploring subarrays from length 1 upward, we'll run into the shortest subarray that sums to s along the way
 
   return 0
 
