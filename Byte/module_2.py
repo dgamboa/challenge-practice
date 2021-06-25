@@ -233,17 +233,30 @@ def merge(intervals):
         # second interval: third interval
   
   # Second pseudocode brainstorm:
+  # Sort intervals
+  intervals.sort()
   # first = 0
+  first = 0
+
   # While loop: while first < len(intervals) - 1:  --> while first interval index is less than the length of the intervals list minus one
+  while first < len(intervals) - 1:
     # first_interval = intervals[first]
+    first_interval = intervals[first]
     # second_interval = intervals[first + 1]
+    second_interval = intervals[first + 1]
     # if first_interval[1] >= second_interval[0]:
-      # intervals[first:first + 2] = [first_interval[0], second_interval[1]]
+    if first_interval[1] >= second_interval[0]:
+      # intervals[first:first + 2] = [[first_interval[0], second_interval[1]]] -> note that this doesn't take into account instances where the intervals are in different order, which is why the code below is required
+      intervals[first:first + 2] = [[min(first_interval[0], second_interval[0]), max(first_interval[1], second_interval[1])]]
     # else:
+    else:
       # first += 1
+      first += 1
     # break if len(intervals) == 1
+    break if len(intervals) == 1
   
   # return intervals
+  return intervals
 
   # Optimization:
   # Time Complexity: 
