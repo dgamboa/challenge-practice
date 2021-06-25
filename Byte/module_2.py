@@ -259,10 +259,16 @@ def merge(intervals):
   return intervals
 
   # Optimization:
-  # Time Complexity: 
-  # Space Complexity: 
-  # Best Conceivable Runtime: 
+  # Time Complexity: The while loop alone would make this an O(n) process. Sorting adds a multiple to that. Merging any interval inside the while loop causes the intervals array to be rebuilt which could be O(n) -> O(n^2)
+  # Space Complexity: O(n) because we have keep track of intervals while we change it, otherwise it's O(1)
+  # Best Conceivable Runtime: I think there's a way to do this in O(n) with dynamic arrays
   # Description:
+  # Sort the intervals array
+  # Set a first variable at 0
+  # Do a while loop that cycles through each interval and compares it to the next interval
+  # If the numbers overlap, merge the intervals, otherwise go to the next comparison
+  # If the length of intervals reaches 1, break out of the loop, otherwise keep going until reaching the second to last item
+  # return intervals
   
 
 
