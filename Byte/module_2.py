@@ -245,6 +245,13 @@ def merge(intervals):
   
   # return intervals
 
+  # Optimization:
+  # Time Complexity: 
+  # Space Complexity: 
+  # Best Conceivable Runtime: 
+  # Description:
+  
+
 
 # Exercise 5: Max Binary Tree Depth
 # Link: (https://leetcode.com/problems/maximum-depth-of-binary-tree/)
@@ -382,3 +389,16 @@ def maxProfit(prices):
   
   # Return profit
   return profit
+
+  # Optimization:
+  # Time Complexity: O(n) because we'll need to look at all prices before we can be sure we have the max profit
+  # Space Complexity: O(1) because we only track the variables profit and lowest in memory
+  # Best Conceivable Runtime: O(n)
+  # Description:
+  # Set the lowest price variable to the first price
+  # Set a profit variable to 0
+  # Loop through the prices list starting with the second price
+  # If we run into a price lower than lowest, update the lowest variable --> now look for a higher profit to the right of that lowest price
+  # If the price is not lower than lowest, calculate the profit from buying at lowest to current price
+  # If that profit is greater than the previously highest profit, update profit
+  # Return the profit
