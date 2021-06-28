@@ -5,7 +5,7 @@
 # 4. Code your solution [15 minutes]
 # 5. Test your solution [5 minutes]
 
-# Day 1,2,3,4 **************************************************************** #
+# Day 1,2,3,4,5,6 ************************************************************ #
 # Focus Day 1: understand the problem **************************************** #
 # Focus Day 2,3,4,5: brute force solutions & optimization ******************** #
 
@@ -29,7 +29,7 @@ def maxSubArrayBF(nums):
   # Manage size of subarray with outer loop
   for size in range(1, len(nums) + 1): # -> includes size = 1, 2, 3
     # Manage the start of the subarray with inner loop
-    for start in range(len(nums) - size + 1): # -> includes start at 0, 1, 3; 0, 1; 0
+    for start in range(len(nums) - size + 1): # -> includes start at 0, 1, 2; 0, 1; 0
       # Create the subarray with start and start + size
       subarr = nums[start : start + size]
       # Sum the subarray
