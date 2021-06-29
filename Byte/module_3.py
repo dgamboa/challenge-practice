@@ -7,6 +7,7 @@
 
 # Day 1,2,3,4,5,6 ************************************************************ #
 
+# Day 1 ********************************************************************** #
 # Exercise 1: Climb Stairs
 # Link: (https://leetcode.com/problems/climbing-stairs/)
   def climbStairs(n):
@@ -37,3 +38,57 @@
       # increment start by 1
     # if len of a is 1, break the while loop
   # return a
+
+
+# Day 2 ********************************************************************** #
+# Refer back to previous brute force solutions
+# Work through BUD optimization (bottlenecks, unnecessary work, duplicated work)
+# Go through existing knowledge and list possible approaches or patterns
+
+# Exercise 3: Max Sum Subarray
+# Link: (https://leetcode.com/problems/maximum-subarray/)
+
+import math
+
+def maxSubArrayBF(nums):
+  # set variable to track max sum and start with negative infinity
+  max_tracker = -math.inf
+
+  # Manage size of subarray with outer loop
+  for size in range(1, len(nums) + 1): # -> includes size = 1, 2, 3
+    # Manage the start of the subarray with inner loop
+    for start in range(len(nums) - size + 1): # -> includes start at 0, 1, 2; 0, 1; 0
+      # Create the subarray with start and start + size
+      subarr = nums[start : start + size]
+      # Sum the subarray
+      sub_sum = sum(subarr)
+      # Track the max sum so far
+      max_tracker = max(max_tracker, sub_sum)
+  
+  return max_tracker
+
+  # Bottlenecks: replicating the subarray using start and size indexes, summing the subarray after creating it
+  # Un. work: rather than creating the array and summing up its items, we could loop through the items once
+  # Dup. work: n/a
+
+  # Possible approaches: by recognizing that a negative running sum won't yield larger subarray sum to the right, we can loop through the array once, and track the running sum. If it's negative, we reset the current running sum to zero. If it's positive, we add the current number to the running sum and check to see if it's the max
+
+def maxSubArrayOp(nums):
+  # Track the max and the running sum
+  running_sum = 0
+  sums_tracker = []
+
+  # Loop through all numbers
+  for n in nums:
+    # If the running sum including cur n is > 0
+    if running_sum + n > 0:
+      # Update the running sum
+      running_sum += n
+      # Check the max tracker for local max
+      sums_tracker.append(running_sum)
+    else:
+      # Otherwise reset running sum to 0
+      running_sum = 0
+      sums_tracker.append(n)
+  
+  return max(sums_tracker)
