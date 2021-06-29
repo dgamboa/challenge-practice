@@ -6,6 +6,7 @@
 # 5. Test your solution [5 minutes]
 
 # Day 1,2,3,4,5,6 ************************************************************ #
+# Feedback: we don't discuss the patterns, Java in the solutions is a bit more confusing than Python so it's hard to follow, sometimes the workbooks have confusing instructions ****************************************************************************** #
 
 # Day 1 ********************************************************************** #
 # Exercise 1: Climb Stairs
@@ -124,3 +125,12 @@ def maxSubArrayOp(nums):
   # Dup. work: we recalculate several profits by re-looping over some of the prices
 
   # Possible approaches: we could track the lowest price and calculate a profit as we go along. If the profit increases, we could change the lowest price and otherwise select the highest profit between the max so far and the profit from the latest price minus the lowest price
+
+
+# Day 3 ********************************************************************** #
+# Code up the solution by hand and test it by hand
+# Then copy it to a Leetcode and run it
+# Make a list of all the errors
+
+# Exercise 1: Max Binary Tree Depth
+# Link: (https://leetcode.com/problems/maximum-depth-of-binary-tree/)
