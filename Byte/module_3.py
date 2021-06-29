@@ -109,18 +109,18 @@ def maxSubArrayOp(nums):
 # Exercise 3: Merge Intervals
 # Link: (https://leetcode.com/problems/merge-intervals/)
 
-  # Bottlenecks: 
-  # Un. work: 
-  # Dup. work: 
+  # Bottlenecks: sorting at the beginning, rebuilding the array
+  # Un. work: rebuilding the array may be unnecessary
+  # Dup. work: could pop an interval that falls inside another interval
 
-  # Possible approaches: 
+  # Possible approaches: I wonder if we could build a queue while we sort. Then we might dequeue the first two intervals and decide whether to append an integrated interval or just the first interval. After that, we would dequeue the next interval and so on. This would avoid replacing intervals (i.e. rebuilding the intervals array)
 
 
 # Exercise 4: Buy and Sell Stock
 # Link: (https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
 
-  # Bottlenecks: 
-  # Un. work: 
-  # Dup. work: 
+  # Bottlenecks: BF approach has nested loops
+  # Un. work: we only need to see each price once to know they're in the list, we should be able to do it in O(n) time
+  # Dup. work: we recalculate several profits by re-looping over some of the prices
 
-  # Possible approaches: 
+  # Possible approaches: we could track the lowest price and calculate a profit as we go along. If the profit increases, we could change the lowest price and otherwise select the highest profit between the max so far and the profit from the latest price minus the lowest price
