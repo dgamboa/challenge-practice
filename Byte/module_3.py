@@ -45,7 +45,7 @@
 # Work through BUD optimization (bottlenecks, unnecessary work, duplicated work)
 # Go through existing knowledge and list possible approaches or patterns
 
-# Exercise 3: Max Sum Subarray
+# Exercise 1: Max Sum Subarray
 # Link: (https://leetcode.com/problems/maximum-subarray/)
 
 import math
@@ -74,7 +74,7 @@ def maxSubArrayBF(nums):
   # Possible approaches: by recognizing that a negative running sum won't yield larger subarray sum to the right, we can loop through the array once, and track the running sum. If it's negative, we reset the current running sum to zero. If it's positive, we add the current number to the running sum and check to see if it's the max
 
 def maxSubArrayOp(nums):
-  # Track the max and the running sum
+  # Track the running sum and the previous running sums
   running_sum = 0
   sums_tracker = []
 
@@ -84,11 +84,43 @@ def maxSubArrayOp(nums):
     if running_sum + n > 0:
       # Update the running sum
       running_sum += n
-      # Check the max tracker for local max
+      # Add it to the tracker
       sums_tracker.append(running_sum)
     else:
       # Otherwise reset running sum to 0
       running_sum = 0
+      # And add the cur n to the tracker
       sums_tracker.append(n)
   
+  # Return the max n in the tracker
   return max(sums_tracker)
+
+# Exercise 2: Climbing Stairs
+# Link: (https://leetcode.com/problems/climbing-stairs/)
+# Comment: the brute force solution here is to calculate all possible combinations recursively. That means we should define the base case and build a recursive function that calculates all possible ways from each step and adds them to the next step through n
+
+  # Bottlenecks: Finding all the combinations will consume lots of time and space
+  # Un. work: n/a
+  # Dup. work: The recursive nature of the BF solutions means we duplicate lots of the work 
+
+  # Possible approaches: We might be able to derive a mathematical way to get this answer. For 2 options (1 stair or 2 stairs at a time), we know fibonacci applies
+
+
+# Exercise 3: Merge Intervals
+# Link: (https://leetcode.com/problems/merge-intervals/)
+
+  # Bottlenecks: 
+  # Un. work: 
+  # Dup. work: 
+
+  # Possible approaches: 
+
+
+# Exercise 4: Buy and Sell Stock
+# Link: (https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
+
+  # Bottlenecks: 
+  # Un. work: 
+  # Dup. work: 
+
+  # Possible approaches: 
