@@ -6,7 +6,7 @@
 # 5. Test your solution [5 minutes]
 
 # Day 1,2,3,4,5,6 ************************************************************ #
-# Feedback: we don't discuss the patterns, Java in the solutions is a bit more confusing than Python so it's hard to follow, sometimes the workbooks have confusing instructions ****************************************************************************** #
+# Feedback: we don't discuss the patterns, Java in the solutions is a bit more confusing than Python so it's hard to follow, sometimes the workbooks have confusing instructions (how does Day 3 Module 3 fit into the BUD framework? Is the intent to do BUD on the BF solutions for these or code them?)****************************************************************************** #
 
 # Day 1 ********************************************************************** #
 # Exercise 1: Climb Stairs
@@ -134,3 +134,24 @@ def maxSubArrayOp(nums):
 
 # Exercise 1: Max Binary Tree Depth
 # Link: (https://leetcode.com/problems/maximum-depth-of-binary-tree/)
+
+# We can do this with depth-first search and recursion
+# The base case is: if node is None -> return 0
+# We can then run this function for the left and right nodes adding 1 for the current node
+# Finally, we can return the max of the left or right depth
+# This ultimately trickles back up to the root node and calculates the max depth
+
+def maxBinaryTreeDepth(root):
+  if root is None:
+    return 0
+
+  left_depth = maxBinaryTreeDepth(root.left) + 1
+  right_depth = maxBinaryTreeDepth(root.right) + 1
+
+  return max(left_depth, right_depth)
+
+# Exercise 2: Linked List Cycles
+# Link: (https://leetcode.com/problems/linked-list-cycle/)
+
+  # 
+
