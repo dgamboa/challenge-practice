@@ -173,3 +173,41 @@ def hasCycle(head):
   
   return False
 
+# Exercise 3: Buy and Sell Stock
+# Link: (https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
+
+# Brute Force:
+# Nested loops that compare each price to all subsequent prices to calculate profit,
+# and tracks max profit across all comparisons
+# For example: [7, 1, 5, 3, 6, 4]
+# Start with 7, calculate all profits, keep max profit
+# Move onto 1, calculate all profits, keep max profit
+
+def buyAndSellBF(prices):
+  max_profit = 0
+
+  for i in range(len(prices) - 1):
+    for j in range(i + 1, len(prices)):
+      profit = prices[j] - prices[i]
+      max_profit = max(max_profit, profit)
+  
+  return max_profit
+
+  # Bottlenecks: n/a
+  # Un. work: do we need to do nested loops?
+  # Dup. work: we're looking at each price multiple times
+  
+  # Possible approaches: what if we tracked lowest price so far and max profit;
+  # then we might be able to loop only once
+
+def buyAndSellOp(prices):
+  lowest = prices[0]
+  max_profit = 0
+
+  for i in range(1, len(prices)):
+    if prices[i] < lowest:
+      lowest = prices[i]
+    else:
+      max_profit = max(max_profit, prices[i] - lowest)
+  
+  return max_profit
