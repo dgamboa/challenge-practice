@@ -272,3 +272,33 @@ def longestConsecutiveOp(nums):
       max_length = max(max_length, seq_length)
   
   return max_length
+
+
+# Exercise 2: Longest Palindromic Substring
+# Link: (https://leetcode.com/problems/longest-palindromic-substring/)
+
+# Example
+# Input: s = "babad"
+# Output: "bab"
+# Constraints: characters are digits (0-9) or English letters (a-zA-Z)
+
+# Brute Force Solution:
+def longestPalindromeBF(s):
+  longest = ""
+
+  for length in range(1, len(s) + 1):
+    for start in range(len(s) - length + 1):
+      substring = s[start:start + length]
+      if substring == substring[::-1]:
+        longest = substring
+  
+  return longest
+
+# BCR: 
+# Bottlenecks: 
+# Un. Work: 
+# Dup. Work: 
+# Knowledge: 
+
+def longestPalindromeOp(s):
+  pass
