@@ -211,3 +211,46 @@ def buyAndSellOp(prices):
       max_profit = max(max_profit, prices[i] - lowest)
   
   return max_profit
+
+
+# Day 4 ********************************************************************** #
+# Objective: optimize code using BUD framework
+# Use the given brute force solution to (1) compute best conceivable runtime, and (2) draw on knowledge to try to find the most optimal solution you can
+
+# Exercise 1: Longest Consecutive Sequence
+# Link: (https://leetcode.com/problems/longest-consecutive-sequence/)
+
+# Example
+# Input: nums = [100,4,200,1,3,2]
+# Output: 4
+
+# Brute Force Solution:
+def longestConsecutiveBF(nums):
+  numsSorted = sorted(nums)
+
+  counter = 1
+  max_counter = 0
+
+  for i in range(len(numsSorted) - 1):
+    if numsSorted[i] + 1 == numsSorted[i + 1]:
+      counter += 1
+      max_counter = max(max_counter, counter)
+    else:
+      counter = 1
+  
+  return max_counter
+
+# BCR: O(n) because we'll need to iterate over the array
+# Bottlenecks: we sort the array first, which is time O(n log n)
+# Un. Work: the initial sorting may be unnecessary since we're going to loop through all n's
+# Dup. Work: n/a
+# Knowledge: what if we use a hash table to track numbers seen with the number as the key, and make the value pair the counter. We can then track a max_counter as we loop through the array
+
+def longestConsecutiveOp(nums):
+  tracker = {}
+  max_counter = 0
+
+  for n in nums:
+    if n in tracker:
+    else:
+      tracker[n]
