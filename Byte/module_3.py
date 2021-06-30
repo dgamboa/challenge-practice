@@ -244,13 +244,31 @@ def longestConsecutiveBF(nums):
 # Bottlenecks: we sort the array first, which is time O(n log n)
 # Un. Work: the initial sorting may be unnecessary since we're going to loop through all n's
 # Dup. Work: n/a
-# Knowledge: what if we use a hash table to track numbers seen with the number as the key, and make the value pair the counter. We can then track a max_counter as we loop through the array
+# Knowledge: what if we use a set to track numbers seen. We can loop through the set checking for the start of a sequence with n - 1 in set. Once we find the start of a sequence, we can add 1 while tracking the length of the sequence until the sequence ends
 
 def longestConsecutiveOp(nums):
-  tracker = {}
-  max_counter = 0
+  # Set a max_length tracker
+  max_length = 0
+  # Create a set of the nums array -> O(n)
+  nums_set = set(nums)
 
-  for n in nums:
-    if n in tracker:
-    else:
-      tracker[n]
+  # Loop through the set -> O(n)
+  for n in nums_set:
+    # If n - 1 is not in the set, that means it's the start of a sequence
+    if n - 1 not in nums_set:
+      # Initial conditions:
+      # Set the current n to n
+      cur_n = n
+      # Set the seq length to 1
+      seq_length = 1
+
+      # Capture the sequence with this start n by incrementing by 1 and checking if it's in the set
+      while cur_n + 1 in nums_set:
+        # If it's in the set, keep going and increment the seq length
+        cur_n += 1
+        seq_length += 1
+
+      # Once we've cycled through this sequence, check to see if it's the global max length so far
+      max_length = max(max_length, seq_length)
+  
+  return max_length
