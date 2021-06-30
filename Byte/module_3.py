@@ -153,5 +153,23 @@ def maxBinaryTreeDepth(root):
 # Exercise 2: Linked List Cycles
 # Link: (https://leetcode.com/problems/linked-list-cycle/)
 
-  # 
+# The key to this one is keeping track of the nodes we've seen while traversing the linked list
+# We can use a hash table to track nodes by their value
+# We can traverse the linked list while current.next is not None
+
+def hasCycle(head):
+  if head is None:
+    return False
+  
+  tracker = {}
+  current = head
+
+  while current.next is not None:
+    if current.next.value in tracker and tracker[current.next.value] == current.next:
+      return True
+    else:
+      tracker[current.next.value] = current.next
+      current = current.next
+  
+  return False
 
