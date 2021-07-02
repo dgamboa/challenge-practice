@@ -341,3 +341,37 @@ def mergeKLists(lists):
 # Un. Work: Can we get rid of the store, and just cycle through the linked lists?
 # Dup. Work: We have an extra head node to help with the return
 # Knowledge: We might be able to use a new node to order the nodes. We could set three variables to each node, then pick the lowest of the three as the first node in the returned list. We would replace that variable with that node's next node. Then we could pick the lowest one again, and so on.
+
+
+# Day 5 ********************************************************************** #
+# Objective: optimize code using BUD framework
+# Use the given brute force solution to (1) compute best conceivable runtime, and (2) draw on knowledge to try to find the most optimal solution you can
+
+# Exercise 1: LRU Cache
+# Link: (https://leetcode.com/problems/lru-cache/) 
+
+# Solution:
+from collections import OrderedDict
+
+class LRUCache:
+
+    def __init__(self, capacity: int):
+        self.cache = OrderedDict()
+        self.capacity = capacity
+
+    def get(self, key: int) -> int:
+        if key not in self.cache:
+          return -1
+        self.cache.move_to_end(key)
+        return self.cache[key]
+
+    def put(self, key: int, value: int) -> None:
+        if key in self.cache:
+            del self.cache[key]
+        self.cache[key] = value
+        
+        if len(self.cache) > self.capacity:
+            self.cache.popitem(last=False)
+
+# Commentary: I'm uncertain on how to solve this problem with a brute force solution at this point. I think using a linked list to track the cache, and moving nodes as needed would do it. That would be brute force because iterating over the linked list every time would be O(n) time with n being the cache capacity.
+# Optimizing: Learning about OrderedDicts with this implementation was great. The problem becomes very straightforward when using a dictionary that can be ordered.
