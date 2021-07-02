@@ -6,7 +6,8 @@
 # 5. Test your solution [5 minutes]
 
 # Day 1,2,3,4,5,6 ************************************************************ #
-# Feedback: we don't discuss the patterns, Java in the solutions is a bit more confusing than Python so it's hard to follow, sometimes the workbooks have confusing instructions (how does Day 3 Module 3 fit into the BUD framework? Is the intent to do BUD on the BF solutions for these or code them?)****************************************************************************** #
+# Feedback: we don't discuss the patterns, Java in the solutions is a bit more confusing than Python so it's hard to follow, sometimes the workbooks have confusing instructions (how does Day 3 Module 3 fit into the BUD framework? Is the intent to do BUD on the BF solutions for these or code them?). The brute force solution descriptions provided in Day 5 are too simplistic and don't explain enough to be able to move on to the optimization phase 
+# **************************************************************************** #
 
 # Day 1 ********************************************************************** #
 # Exercise 1: Climb Stairs
@@ -375,3 +376,11 @@ class LRUCache:
 
 # Commentary: I'm uncertain on how to solve this problem with a brute force solution at this point. I think using a linked list to track the cache, and moving nodes as needed would do it. That would be brute force because iterating over the linked list every time would be O(n) time with n being the cache capacity.
 # Optimizing: Learning about OrderedDicts with this implementation was great. The problem becomes very straightforward when using a dictionary that can be ordered.
+
+# Exercise 2: Generate Parentheses
+# Link: (https://leetcode.com/problems/generate-parentheses/)
+
+# Example
+# Input: int n -> n = 3
+# Output: list of valid parentheses combinations -> ["((()))","(()())","(())()","()(())","()()()"]
+
