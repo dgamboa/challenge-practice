@@ -336,8 +336,8 @@ def mergeKLists(lists):
 
   return head.next
 
-# BCR: 
-# Bottlenecks: 
-# Un. Work: 
-# Dup. Work: 
+# BCR: We'll have to look at each node at least once, so BCR is O(n)
+# Bottlenecks: The array store and then sorting the store are the bottlenecks
+# Un. Work: Can we get rid of the store, and just cycle through the linked lists?
+# Dup. Work: We have an extra head node to help with the return
 # Knowledge: 
