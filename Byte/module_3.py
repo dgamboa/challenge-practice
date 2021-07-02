@@ -340,4 +340,4 @@ def mergeKLists(lists):
 # Bottlenecks: The array store and then sorting the store are the bottlenecks
 # Un. Work: Can we get rid of the store, and just cycle through the linked lists?
 # Dup. Work: We have an extra head node to help with the return
-# Knowledge: 
+# Knowledge: We might be able to use a new node to order the nodes. We could set three variables to each node, then pick the lowest of the three as the first node in the returned list. We would replace that variable with that node's next node. Then we could pick the lowest one again, and so on.
