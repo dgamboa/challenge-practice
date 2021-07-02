@@ -308,4 +308,36 @@ def longestPalindromeOp(s):
   # start,end = 0,0
 
   # for i in range(len(s)):
-    
+
+
+# Exercise 3: Merge K Sorted Lists
+# Link: (https://leetcode.com/problems/merge-k-sorted-lists/)
+
+# Example
+# Input: lists = [[1,4,5],[1,3,4],[2,6]]
+# Output: [1,1,2,3,4,4,5,6]
+# Constraints: lists are sorted in ascending order
+
+# Brute Force Solution:
+def mergeKLists(lists):
+  store = []
+        
+  head = point = ListNode(0)
+
+  for list in lists:
+    node = list
+    while node:
+      store.append(node.val)
+      node = node.next
+  
+  for x in sorted(store):
+    point.next = ListNode(x)
+    point = point.next
+
+  return head.next
+
+# BCR: 
+# Bottlenecks: 
+# Un. Work: 
+# Dup. Work: 
+# Knowledge: 
