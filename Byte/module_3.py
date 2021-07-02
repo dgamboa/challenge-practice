@@ -294,11 +294,18 @@ def longestPalindromeBF(s):
   
   return longest
 
-# BCR: 
-# Bottlenecks: 
-# Un. Work: 
-# Dup. Work: 
-# Knowledge: 
+# BCR: We will need to look at each character at least once so O(n)
+# Bottlenecks: Nested loops
+# Un. Work: We may not need to reverse the substring which is another nested loop
+# Dup. Work: We look at the same character multiple times to form substrings
+# Knowledge: palindromes spell the same word forward and backward.
 
 def longestPalindromeOp(s):
   pass
+  # if s is None or len(s) < 1:
+  #   return ""
+  
+  # start,end = 0,0
+
+  # for i in range(len(s)):
+    
